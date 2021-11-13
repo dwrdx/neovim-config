@@ -1,0 +1,228 @@
+{
+	"Main": {
+		"prefix": ["main"],
+		"body": [
+			"int main(int argc, const char *argv[])",
+			"{",
+			"\t$1",
+			"\treturn 0;",
+			"}"
+		],
+		"description": "Add main function"
+	},
+	"Inc": {
+		"prefix": ["Inc"],
+		"body": [
+			"#include <${1:stdio}.h>$0"
+		],
+		"description": "Include standard library header"
+	},
+	"inc": {
+		"prefix": ["inc"],
+		"body": [
+			"#include \"${1:${TM_FILENAME_BASE}}.h\"$0"
+		],
+		"description": "Include user header"
+	},
+	"Def": {
+		"prefix": ["Def"],
+		"body": [
+			"#ifndef $1",
+			"#define ${1:SYMBOL} ${2:value}",
+			"#endif${0}"
+
+		],
+		"description": "Create #ifndef and #define blocks"
+	},
+	"def": {
+		"prefix": ["def"],
+		"body": [
+			"#define ${1:SYMBOL}"
+		],
+		"description": "Create #define"
+	},
+	"ifdef": {
+		"prefix": ["ifdef"],
+		"body": [
+	     	"#ifdef ${1:FOO}",
+	     	"    ${2:#define }",
+	     	"#endif"
+		],
+		"description": "Create #ifdef blocks"
+	},
+	"#if": {
+		"prefix": ["#if"],
+		"body": [
+	        "#if ${1:FOO}",
+	        "    ${2}",
+	        "#endif"
+		],
+		"description": "Create #if blocks"
+	},
+	"once": {
+		"prefix": ["once"],
+		"body": [
+			"#ifndef ${TM_FILENAME_BASE/(.*)/${1:/upcase}/}_H",
+			"#define ${TM_FILENAME_BASE/(.*)/${1:/upcase}/}_H",
+
+			"${2}",
+
+			"#endif /* end of include guard: ${TM_FILENAME_BASE/(.*)/${1:/upcase}/}_H */"
+		],
+		"description": "Create include gard for header file"
+	},
+	"if": {
+		"prefix": ["if"],
+		"body": [
+			"if (${1: /* condition */}) ",
+			"{",
+			"    ${2: /* code */}",
+			"}"
+		],
+		"description": "Add if condition block"
+	},
+	"el": {
+		"prefix": ["el"],
+		"body": [
+			"else",
+			"{",
+			"    ${1}",
+			"}"
+		],
+		"description": "Add else condition block"
+	},
+	"t": {
+		"prefix": ["t"],
+		"body": [
+			"${1:/* condition */} ? ${2:a} : ${3:b}"
+		],
+		"description": "Add tertiary condition"
+	},
+	"do": {
+		"prefix": ["do"],
+		"body": [
+			"do",
+			"{",
+			"    ${2:/* code */}",
+			"} while (${1:/* condition */});"
+		],
+		"description": "Add do while loop"
+	},
+	"wh": {
+		"prefix": ["wh"],
+		"body": [
+			"while (${1:/* condition */})",
+			"{",
+			"    ${2:/* code */}",
+			"}"
+		],
+		"description": "Add while loop"
+	},
+	"for": {
+		"prefix": ["for"],
+		"body": [
+	    	"for (${2:i} = 0; $2 < ${1:count}; $2${3:++}) ",
+	    	"{",
+	    	"    ${4:/* code */}",
+	    	"}"
+		],
+		"description": "Add for loop"
+	},
+	"forr": {
+		"prefix": ["forr"],
+		"body": [
+			"for (${1:i} = ${2:0}; ${3:$1 < 10}; $1${4:++}) ",
+			"{",
+			"    ${5:/* code */}",
+			"}"
+		],
+		"description": "Add custom for loop"
+	},
+	"fun": {
+		"prefix": ["fun"],
+		"body": [
+			"${1:void} ${2:function_name}(${3})",
+			"{",
+			"    ${4:/* code */}",
+			"}"
+		],
+		"description": "Add function"
+	},
+	"fund": {
+		"prefix": ["fund"],
+		"body": [
+			"${1:void} ${2:function_name}(${3});${4}"
+		],
+		"description": "Add function declaration"
+	},
+	"td": {
+		"prefix": ["td"],
+		"body": [
+			"typedef ${1:int} ${2:MyCustomType};${3}"
+		],
+		"description": "Add type define"
+	},
+	"st": {
+		"prefix": ["st"],
+		"body": [
+			"struct ${1:${TM_FILENAME_BASE}}_T ",
+			"{",
+			"    ${2:/* data */}",
+			"}${3: /* optional variable list */};${4}"
+		],
+		"description": "Add structure"
+	},
+	"tds": {
+		"prefix": ["tds"],
+		"body": [
+			"typedef struct ${2:$1_Tag }",
+			"{",
+			"    ${3:/* data */}",
+			"} ${1:${TM_FILENAME_BASE}}_T;"
+		],
+		"description": "Add structure type define"
+	},
+	"tde": {
+		"prefix": ["tde"],
+		"body": [
+			"typedef enum ",
+			"{",
+			"    ${1:/* data */}",
+			"} ${2:foo};"
+		],
+		"description": "Add enum type define"
+	},
+	"tdu": {
+		"prefix": ["tdu"],
+		"body": [
+			"typedef union ${2:$1_Tag }",
+			"{",
+			"    ${3:/* data */}",
+			"} ${1:${TM_FILENAME_BASE}}_T;"
+		],
+		"description": "Add union type define"
+	},
+	"un": {
+		"prefix": ["un"],
+		"body": [
+			"unsigned"
+		],
+		"description": "Add unsigned"
+	},
+	"fileh": {
+		"prefix": ["fileh"],
+		"body": [
+			"/* ",
+			" * ${TM_FILENAME}",
+			" * ",
+			" * ${1}",
+			" * ",
+			" * Created by Edward XU",
+			" * ",
+			" * Log: ",
+			" * ",
+			" */"
+		],
+		"description": "Add file header"
+	}
+}

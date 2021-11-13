@@ -13,11 +13,11 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'mhinz/vim-grepper'
 "Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'neovim/nvim-lspconfig'
+Plug 'hrsh7th/nvim-cmp'
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/cmp-path'
 Plug 'hrsh7th/cmp-cmdline'
-Plug 'hrsh7th/nvim-cmp'
 Plug 'hrsh7th/cmp-vsnip' " For vsnip users.
 Plug 'hrsh7th/vim-vsnip' " For vsnip users.
 Plug 'simrat39/symbols-outline.nvim'
@@ -54,6 +54,7 @@ set nocompatible            " disable compatibility to old-time vi
 set showmatch               " show matching 
 set ignorecase              " case insensitive 
 set smartcase               " override the 'ignorecase' when there is uppercase letters
+set undolevels=1000
 set mouse=v                 " middle-click paste with 
 set mouse=a                 " enable mouse click
 set cursorline              " highlight current cursorline
@@ -89,6 +90,7 @@ map <leader>tm :ToggleTerm<CR>
 " Toggle quickfix
 map <silent> <leader>qo :copen<CR>
 map <silent> <leader>qc :cclose<CR>
+let g:c_syntax_for_h = 1
 
 " Copy current file path to clipboard
 function! CopyCurrentFilePath()
@@ -115,6 +117,7 @@ endif
 " {{{ symbols-outline
   nmap <F4> :SymbolsOutline<CR>
 " }}}
+
 
 " {{{ nerdtree
   let g:NERDTreeMinimalUI = 1
@@ -162,7 +165,10 @@ endif
   " - Popup window (center of the current window)
   "let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6, 'relative': v:true } }
   "let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6, 'relative': v:true, 'yoffset': 1.0 } }
-let g:fzf_layout = { 'window': '10new' }
+  let g:fzf_layout = { 'window': '10new' }
+
+  " - Preview windows (disable)
+  let g:fzf_preview_window = []
   
   " Customize fzf colors to match your color scheme
   " - fzf#wrap translates this to a set of `--color` options
@@ -221,18 +227,22 @@ let g:fzf_layout = { 'window': '10new' }
   let $FZF_DEFAULT_OPTS = '--bind ctrl-a:select-all,alt-n:next-history,alt-p:previous-history,ctrl-n:down,ctrl-p:up'
 " }}}
 
-" Default value is clap
-let g:dashboard_default_executive ='fzf'
+" {{{ dashboard
+  " Default value is clap
+  let g:dashboard_default_executive ='fzf'
 
-let g:dashboard_custom_header = [
-\ ' ███╗   ██╗ ███████╗ ██████╗  ██╗   ██╗ ██╗ ███╗   ███╗',
-\ ' ████╗  ██║ ██╔════╝██╔═══██╗ ██║   ██║ ██║ ████╗ ████║',
-\ ' ██╔██╗ ██║ █████╗  ██║   ██║ ██║   ██║ ██║ ██╔████╔██║',
-\ ' ██║╚██╗██║ ██╔══╝  ██║   ██║ ╚██╗ ██╔╝ ██║ ██║╚██╔╝██║',
-\ ' ██║ ╚████║ ███████╗╚██████╔╝  ╚████╔╝  ██║ ██║ ╚═╝ ██║',
-\ ' ╚═╝  ╚═══╝ ╚══════╝ ╚═════╝    ╚═══╝   ╚═╝ ╚═╝     ╚═╝',
-\]
+  let g:dashboard_custom_header = [
+  \ ' ███╗   ██╗ ███████╗ ██████╗  ██╗   ██╗ ██╗ ███╗   ███╗',
+  \ ' ████╗  ██║ ██╔════╝██╔═══██╗ ██║   ██║ ██║ ████╗ ████║',
+  \ ' ██╔██╗ ██║ █████╗  ██║   ██║ ██║   ██║ ██║ ██╔████╔██║',
+  \ ' ██║╚██╗██║ ██╔══╝  ██║   ██║ ╚██╗ ██╔╝ ██║ ██║╚██╔╝██║',
+  \ ' ██║ ╚████║ ███████╗╚██████╔╝  ╚████╔╝  ██║ ██║ ╚═╝ ██║',
+  \ ' ╚═╝  ╚═══╝ ╚══════╝ ╚═════╝    ╚═══╝   ╚═╝ ╚═╝     ╚═╝',
+  \]
 
+" }}}
+
+" {{{ vim-grepper
 "let g:grepper = {
 "    \ 'tools': ['ack', 'git', 'rg'],
 "    \ 'ack': {
@@ -241,9 +251,36 @@ let g:dashboard_custom_header = [
 "    \   'escape':     '\+*^$()[]',
 "    \ }}
 
+" }}}
+
 
 " ###############################################################################################
 " Plugin Settings - Lau
 " ###############################################################################################
 lua require('init')
 
+
+" {{{ vs-snippt
+  let g:vsnip_snippet_dir = stdpath("config").'/.vsnip'
+  
+  " Expand
+  imap <expr> <C-j>   vsnip#expandable()  ? '<Plug>(vsnip-expand)'         : '<C-j>'
+  smap <expr> <C-j>   vsnip#expandable()  ? '<Plug>(vsnip-expand)'         : '<C-j>'
+
+  " Expand or jump
+  imap <expr> <C-l>   vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-l>'
+  smap <expr> <C-l>   vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-l>'
+
+  " Jump forward or backward
+  imap <expr> <Tab>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<Tab>'
+  smap <expr> <Tab>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<Tab>'
+  imap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'
+  smap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'
+
+  " Select or cut text to use as $TM_SELECTED_TEXT in the next snippet.
+  " See https://github.com/hrsh7th/vim-vsnip/pull/50
+  nmap        s   <Plug>(vsnip-select-text)
+  xmap        s   <Plug>(vsnip-select-text)
+  nmap        S   <Plug>(vsnip-cut-text)
+  xmap        S   <Plug>(vsnip-cut-text)
+" }}}
