@@ -36,6 +36,9 @@ Plug 'tpope/vim-fugitive'
 Plug 'akinsho/toggleterm.nvim'
 Plug 'glepnir/dashboard-nvim'
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
+Plug 'rmagatti/auto-session'
+Plug 'lfv89/vim-interestingwords'
+
 " Plug '~/my-prototype-plugin' " Unmanaged plugin (manually installed and updated)
 call plug#end()
 
@@ -335,6 +338,8 @@ let g:mkdp_page_title = '「${name}」'
 let g:mkdp_filetypes = ['markdown']
 
 " {{{ vim-grepper
+let &statusline .= ' %{grepper#statusline()}'
+nnoremap <leader>s* :Grepper -tool rg -cword -noprompt<cr>
 "let g:grepper = {
 "    \ 'tools': ['ack', 'git', 'rg'],
 "    \ 'ack': {
@@ -371,8 +376,11 @@ lua require('init')
 
   " Select or cut text to use as $TM_SELECTED_TEXT in the next snippet.
   " See https://github.com/hrsh7th/vim-vsnip/pull/50
-  nmap        s   <Plug>(vsnip-select-text)
-  xmap        s   <Plug>(vsnip-select-text)
-  nmap        S   <Plug>(vsnip-cut-text)
-  xmap        S   <Plug>(vsnip-cut-text)
+  "nmap        s   <Plug>(vsnip-select-text)
+  "xmap        s   <Plug>(vsnip-select-text)
+  "nmap        S   <Plug>(vsnip-cut-text)
+  "xmap        S   <Plug>(vsnip-cut-text)
+" }}}
+
+" {{{ vim-interestingwords
 " }}}
