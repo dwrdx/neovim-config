@@ -30,7 +30,7 @@ Plug 'vim-scripts/a.vim'
 Plug 'tpope/vim-commentary'
 Plug 'nsf/gocode', { 'tag': 'v.20150303', 'rtp': 'vim' }  " Plugin options
 Plug 'vim-airline/vim-airline'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }  " Plugin outside ~/.vim/plugged with post-update hook
+Plug 'junegunn/fzf', { 'do': './install --all' }  " Plugin outside ~/.vim/plugged with post-update hook
 Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'akinsho/toggleterm.nvim'
@@ -38,6 +38,7 @@ Plug 'glepnir/dashboard-nvim'
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 Plug 'rmagatti/auto-session'
 Plug 'lfv89/vim-interestingwords'
+Plug 'famiu/bufdelete.nvim'
 
 " Plug '~/my-prototype-plugin' " Unmanaged plugin (manually installed and updated)
 call plug#end()
@@ -47,9 +48,6 @@ call plug#end()
 " ###############################################################################################
 " VIM Settings
 " ###############################################################################################
-"set guifont=Bitstream\ Vera\ Sans\ Mono:h18
-set guifont=Consolas:h18
-"Roboto\ Mono\ for\ Powerline:h18
 set encoding=utf-8
 set termguicolors
 set rnu                     " relative line number
@@ -84,12 +82,20 @@ set ttyfast                 " Speed up scrolling in Vim
 " set spell                 " enable spell check (may need to download language package)
 " set noswapfile            " disable creating swap file
 " set backupdir=~/.cache/vim " Directory to store backup files.
-" Terminal
-"command! -nargs=* T split | terminal <args>
-"command! -nargs=* VT vsplit | terminal <args>
+
+" {{{ terminal
+let &shell = 'pwsh'
+let &shellcmdflag = '-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;'
+let &shellredir = '2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode'
+let &shellpipe = '2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode'
+set shellquote= shellxquote=
 map <leader>tm :ToggleTerm<CR>
+tnoremap <expr> <C-R> '<C-\><C-N>"'.nr2char(getchar()).'pi'
 " Key to exit terminal command mode
 "tnoremap <C-[> <C-\><C-n>
+"command! -nargs=* T split | terminal <args>
+"command! -nargs=* VT vsplit | terminal <args>
+" }}}
 
 " Toggle quickfix
 map <silent> <leader>qo :copen<CR>
@@ -383,4 +389,8 @@ lua require('init')
 " }}}
 
 " {{{ vim-interestingwords
+" }}}
+
+" {{{ bufdelete.nvim
+  :nnoremap <Leader>q :Bdelete<CR>
 " }}}
