@@ -5,6 +5,18 @@
 " Enable Mouse
 set mouse=a
 
+" Neovide configuration
+if exists('g:neovide')
+  function NeovideFullscreen()
+      if g:neovide_fullscreen == v:true
+          let g:neovide_fullscreen=v:false
+      else
+          let g:neovide_fullscreen=v:true
+      endif
+  endfunction
+  map <F11> :call NeovideFullscreen()<cr>
+endif
+
 " Set Editor Font
 if exists(':GuiFont')
     " Use GuiFont! to ignore font errors
@@ -14,6 +26,8 @@ if exists(':GuiFont')
     "Roboto\ Mono\ for\ Powerline:h18
     " GuiFont Roboto\ Mono\ for\ Powerline:h18
 endif
+
+
 
 " Disable GUI Tabline
 if exists(':GuiTabline')

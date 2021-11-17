@@ -84,22 +84,30 @@ set ttyfast                 " Speed up scrolling in Vim
 " set backupdir=~/.cache/vim " Directory to store backup files.
 
 " {{{ terminal
-let &shell = 'pwsh'
-let &shellcmdflag = '-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;'
-let &shellredir = '2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode'
-let &shellpipe = '2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode'
-set shellquote= shellxquote=
-map <leader>tm :ToggleTerm<CR>
-tnoremap <expr> <C-R> '<C-\><C-N>"'.nr2char(getchar()).'pi'
-" Key to exit terminal command mode
-"tnoremap <C-[> <C-\><C-n>
-"command! -nargs=* T split | terminal <args>
-"command! -nargs=* VT vsplit | terminal <args>
+  " uncomment following shell settings to use powershell on windows
+  " let &shell = 'pwsh'
+  " let &shellcmdflag = '-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;'
+  " let &shellredir = '2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode'
+  " let &shellpipe = '2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode'
+  " set shellquote= shellxquote=
+
+  map <leader>tm :ToggleTerm<CR>
+  tnoremap <expr> <C-R> '<C-\><C-N>"'.nr2char(getchar()).'pi'
+  " Key to exit terminal command mode
+  "tnoremap <C-[> <C-\><C-n>
+  "command! -nargs=* T split | terminal <args>
+  "command! -nargs=* VT vsplit | terminal <args>
 " }}}
 
-" Toggle quickfix
-map <silent> <leader>qo :copen<CR>
-map <silent> <leader>qc :cclose<CR>
+
+" {{{ quickfix
+  map <silent> <leader>qo :copen<CR>
+  map <silent> <leader>qc :cclose<CR>
+  map <silent> <a-,>      :colder<CR>
+  map <silent> <a-.>      :cnewer<CR>
+" }}}
+
+" .h file is s source code
 let g:c_syntax_for_h = 1
 
 " Copy current file path to clipboard
@@ -108,18 +116,6 @@ function! CopyCurrentFilePath()
   echo @+
 endfunction
 nnoremap <leader>% :call CopyCurrentFilePath()<CR>
-
-" Neovide configuration
-if exists('g:neovide')
-  function NeovideFullscreen()
-      if g:neovide_fullscreen == v:true
-          let g:neovide_fullscreen=v:false
-      else
-          let g:neovide_fullscreen=v:true
-      endif
-  endfunction
-  map <F11> :call NeovideFullscreen()<cr>
-endif
 
 " ###############################################################################################
 " Plugin Settings - VIM Script
@@ -179,6 +175,7 @@ endif
 
   " - Preview windows (disable)
   let g:fzf_preview_window = []
+  "let g:fzf_preview_window = ['right:50%', 'ctrl-/']
   
   " Customize fzf colors to match your color scheme
   " - fzf#wrap translates this to a set of `--color` options
