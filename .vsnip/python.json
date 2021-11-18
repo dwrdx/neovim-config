@@ -67,7 +67,7 @@
         "body": [
             "import ${0:module}"
         ],
-        "description": null
+        "description": ""
     },
     "from": {
         "prefix": [
@@ -77,7 +77,7 @@
         "body": [
             "from ${1:package} import ${0:module}"
         ],
-        "description": null
+        "description": ""
     },
     "fdt": {
         "prefix": [
@@ -98,7 +98,7 @@
             "\t\tself.$4 = $4",
             "\t\t${0}"
         ],
-        "description": null
+        "description": ""
     },
     "cla": {
         "prefix": "cla",
@@ -106,7 +106,7 @@
             "class ${1:class_name}:",
             "\t\"\"\"${0:description}\"\"\""
         ],
-        "description": null
+        "description": ""
     },
     "clai": {
         "prefix": "clai",
@@ -116,7 +116,7 @@
             "\tdef __init__(self, ${3:args}):",
             "\t\t${0}"
         ],
-        "description": null
+        "description": ""
     },
     "claip": {
         "prefix": "claip",
@@ -129,7 +129,7 @@
             "\tdef __post_init__(self, ${5:args}):",
             "\t\t${0}"
         ],
-        "description": null
+        "description": ""
     },
     "dtcl": {
         "prefix": [
@@ -141,7 +141,7 @@
             "class ${1:class_name}:",
             "\t${0}"
         ],
-        "description": null
+        "description": ""
     },
     "dtcla": {
         "prefix": [
@@ -153,7 +153,7 @@
             "\t\"\"\"${2:description}\"\"\"",
             "\t${0}"
         ],
-        "description": null
+        "description": ""
     },
     "dtclap": {
         "prefix": [
@@ -167,7 +167,7 @@
             "\tdef __post_init__(self, ${4:args}):",
             "\t\t${0}"
         ],
-        "description": null
+        "description": ""
     },
     "df, def": {
         "prefix": [
@@ -179,7 +179,7 @@
             "\t\"\"\"${3:docstring for $1}\"\"\"",
             "\t${0}"
         ],
-        "description": null
+        "description": ""
     },
     "dff, deff": {
         "prefix": [
@@ -190,7 +190,7 @@
             "def ${1:fname}(self, ${2:args}):",
             "\t${0}"
         ],
-        "description": null
+        "description": ""
     },
     "sdf, sdef": {
         "prefix": [
@@ -202,7 +202,7 @@
             "def ${1:fname}(${2:args}):",
             "\t${0}"
         ],
-        "description": null
+        "description": ""
     },
     "new property": {
         "prefix": [
@@ -265,7 +265,7 @@
             "else:",
             "\t$0"
         ],
-        "description": null
+        "description": ""
     },
     "ei": {
         "prefix": [
@@ -276,7 +276,7 @@
             "elif ${1:condition}:",
             "\t$0"
         ],
-        "description": null
+        "description": ""
     },
     "for": {
         "prefix": [
@@ -321,7 +321,7 @@
             "\tif ${0:condition}:",
             "\t\tbreak"
         ],
-        "description": null
+        "description": ""
     },
     "try:except:": {
         "prefix": "try",
@@ -367,7 +367,7 @@
             "with ${1:expr}:",
             "\t${0}"
         ],
-        "description": null
+        "description": ""
     },
     "with as": {
         "prefix": [
@@ -378,7 +378,7 @@
             "with ${1:expr} as ${2:var}:",
             "\t${0:${VISUAL}}"
         ],
-        "description": null
+        "description": ""
     },
     "awith": {
         "prefix": "awith",
@@ -386,7 +386,7 @@
             "async with ${1:expr} as ${2:var}:",
             "\t${0:${VISUAL}}"
         ],
-        "description": null
+        "description": ""
     },
     "adef": {
         "prefix": "adef",
@@ -395,7 +395,7 @@
             "\t\"\"\"${3:docstring for $1}\"\"\"",
             "\t${0}"
         ],
-        "description": null
+        "description": ""
     },
     "adeff": {
         "prefix": "adeff",
@@ -403,7 +403,7 @@
             "async def ${1:fname}(${2:`indent('.') ? 'self' : ''`}):",
             "\t${0}"
         ],
-        "description": null
+        "description": ""
     },
     "defi": {
         "prefix": "defi",
@@ -411,7 +411,7 @@
             "def __init__(self, ${1:args}):",
             "\t${0}"
         ],
-        "description": null
+        "description": ""
     },
     "defm": {
         "prefix": "defm",
@@ -419,7 +419,7 @@
             "def ${1:mname}(self, ${2:arg}):",
             "\t${0}"
         ],
-        "description": null
+        "description": ""
     },
     "adefm": {
         "prefix": "adefm",
@@ -428,7 +428,7 @@
             "\t${0}",
             ""
         ],
-        "description": null
+        "description": ""
     },
     "property": {
         "prefix": "property",
@@ -444,49 +444,49 @@
             "\treturn locals()",
             "$1 = property(**$1())"
         ],
-        "description": null
+        "description": ""
     },
     "cutf8": {
         "prefix": "cutf8",
         "body": [
             "# -*- coding: utf-8 -*-"
         ],
-        "description": null
+        "description": ""
     },
     "clatin1": {
         "prefix": "clatin1",
         "body": [
             "# -*- coding: latin-1 -*-"
         ],
-        "description": null
+        "description": ""
     },
     "cascii": {
         "prefix": "cascii",
         "body": [
             "# -*- coding: ascii -*-"
         ],
-        "description": null
+        "description": ""
     },
     "ld": {
         "prefix": "ld",
         "body": [
             "${1:var} = lambda ${2:vars} : ${0:action}"
         ],
-        "description": null
+        "description": ""
     },
     "ret": {
         "prefix": "ret",
         "body": [
             "return ${0}"
         ],
-        "description": null
+        "description": ""
     },
     ".": {
         "prefix": ".",
         "body": [
             "self."
         ],
-        "description": null
+        "description": ""
     },
     "try Try/Except": {
         "prefix": "try",
@@ -496,7 +496,7 @@
             "except ${2:Exception} as ${3:e}:",
             "\t${0:raise $3}"
         ],
-        "description": null
+        "description": ""
     },
     "trye Try/Except/Else": {
         "prefix": "trye",
@@ -508,7 +508,7 @@
             "else:",
             "\t${0}"
         ],
-        "description": null
+        "description": ""
     },
     "tryf Try/Except/Finally": {
         "prefix": "tryf",
@@ -520,7 +520,7 @@
             "finally:",
             "\t${0}"
         ],
-        "description": null
+        "description": ""
     },
     "tryef Try/Except/Else/Finally": {
         "prefix": "tryef",
@@ -534,77 +534,77 @@
             "finally:",
             "\t${0}"
         ],
-        "description": null
+        "description": ""
     },
     "pdb": {
         "prefix": "pdb",
         "body": [
             "__import__('pdb').set_trace()"
         ],
-        "description": null
+        "description": ""
     },
     "bpdb": {
         "prefix": "bpdb",
         "body": [
             "__import__('bpdb').set_trace()"
         ],
-        "description": null
+        "description": ""
     },
     "ipdb": {
         "prefix": "ipdb",
         "body": [
             "__import__('ipdb').set_trace()"
         ],
-        "description": null
+        "description": ""
     },
     "iem": {
         "prefix": "iem",
         "body": [
             "__import__('IPython').embed()"
         ],
-        "description": null
+        "description": ""
     },
     "rpdb": {
         "prefix": "rpdb",
         "body": [
             "__import__('rpdb').set_trace()"
         ],
-        "description": null
+        "description": ""
     },
     "wdb": {
         "prefix": "wdb",
         "body": [
             "__import__('wdb').set_trace()"
         ],
-        "description": null
+        "description": ""
     },
     "ptpython": {
         "prefix": "ptpython",
         "body": [
             "__import__('ptpython.repl', fromlist=('repl')).embed(globals(), locals(), vi_mode=${1:False}, history_filename=${2:None})"
         ],
-        "description": null
+        "description": ""
     },
     "pudb": {
         "prefix": "pudb",
         "body": [
             "__import__('pudb').set_trace()"
         ],
-        "description": null
+        "description": ""
     },
     "nosetrace": {
         "prefix": "nosetrace",
         "body": [
             "__import__('nose').tools.set_trace()"
         ],
-        "description": null
+        "description": ""
     },
     "pprint": {
         "prefix": "pprint",
         "body": [
             "__import__('pprint').pprint(${1})"
         ],
-        "description": null
+        "description": ""
     },
     "\"": {
         "prefix": "\"",
@@ -612,14 +612,14 @@
             "\"\"\"${0:doc}",
             "\"\"\""
         ],
-        "description": null
+        "description": ""
     },
     "a=": {
         "prefix": "a=",
         "body": [
             "self.assertEqual(${0}, ${1})"
         ],
-        "description": null
+        "description": ""
     },
     "test": {
         "prefix": "test",
@@ -627,7 +627,7 @@
             "def test_${1:description}(${2:`indent('.') ? 'self' : ''`}):",
             "\t${0}"
         ],
-        "description": null
+        "description": ""
     },
     "testcase": {
         "prefix": "testcase",
@@ -637,7 +637,7 @@
             "\tdef test_${2:description}(self):",
             "\t\t${0}"
         ],
-        "description": null
+        "description": ""
     },
     "tgwt": {
         "prefix": "tgwt",
@@ -646,14 +646,14 @@
             "# when: ${2}",
             "# then: ${3}"
         ],
-        "description": null
+        "description": ""
     },
     "fut": {
         "prefix": "fut",
         "body": [
             "from __future__ import ${0}"
         ],
-        "description": null
+        "description": ""
     },
     "getopt": {
         "prefix": "getopt",
@@ -674,42 +674,42 @@
             "\telif option in (\"-v\", \"--verbose\"):",
             "\t\tverbose = argument"
         ],
-        "description": null
+        "description": ""
     },
     "addp": {
         "prefix": "addp",
         "body": [
             "parser = ${VISUAL:argparse.}ArgumentParser()"
         ],
-        "description": null
+        "description": ""
     },
     "addsp": {
         "prefix": "addsp",
         "body": [
             "${0:sub_parser} = parser.add_subparsers().add_parser(\"${1:name}\")"
         ],
-        "description": null
+        "description": ""
     },
     "addarg": {
         "prefix": "addarg",
         "body": [
             "parser.add_argument(\"${0:short_arg}\", \"${1:long_arg}\", default=${2:None}, help=\"${3:Help text}\")"
         ],
-        "description": null
+        "description": ""
     },
     "addnarg": {
         "prefix": "addnarg",
         "body": [
             "parser.add_argument(\"${0:arg}\", nargs=\"${1:*}\", default\"${2:None}, help=\"${3:Help text}\")"
         ],
-        "description": null
+        "description": ""
     },
     "addaarg": {
         "prefix": "addaarg",
         "body": [
             "parser.add_argument(\"${0:arg}\", \"${1:long_arg}\", action=\"${2:store_true}\", default=${3:False}, help=\"${4:Help text}\")"
         ],
-        "description": null
+        "description": ""
     },
     "pargs": {
         "prefix": "pargs",
@@ -717,7 +717,7 @@
             "\"${VISUAL:return }\"parser.parse_args()",
             ""
         ],
-        "description": null
+        "description": ""
     },
     "glog": {
         "prefix": "glog",
@@ -725,42 +725,42 @@
             "import logging",
             "LOGGER = logging.getLogger(${0:__name__})"
         ],
-        "description": null
+        "description": ""
     },
     "le": {
         "prefix": "le",
         "body": [
             "LOGGER.error(${0:msg})"
         ],
-        "description": null
+        "description": ""
     },
     "lg": {
         "prefix": "lg",
         "body": [
             "LOGGER.debug(${0:msg})"
         ],
-        "description": null
+        "description": ""
     },
     "lw": {
         "prefix": "lw",
         "body": [
             "LOGGER.warning(${0:msg})"
         ],
-        "description": null
+        "description": ""
     },
     "lc": {
         "prefix": "lc",
         "body": [
             "LOGGER.critical(${0:msg})"
         ],
-        "description": null
+        "description": ""
     },
     "li": {
         "prefix": "li",
         "body": [
             "LOGGER.info(${0:msg})"
         ],
-        "description": null
+        "description": ""
     },
     "epydoc": {
         "prefix": "epydoc",
@@ -776,7 +776,7 @@
             "@raise e: ${0: Description}",
             "\"\"\""
         ],
-        "description": null
+        "description": ""
     },
     "dol": {
         "prefix": "dol",
@@ -784,35 +784,35 @@
             "def ${1:__init__}(self, *args, **kwargs):",
             "    super(${0:ClassName}, self).$1(*args, **kwargs)"
         ],
-        "description": null
+        "description": ""
     },
     "kwg": {
         "prefix": "kwg",
         "body": [
             "self.${1:var_name} = kwargs.get('$1', ${2:None})"
         ],
-        "description": null
+        "description": ""
     },
     "lkwg": {
         "prefix": "lkwg",
         "body": [
             "${1:var_name} = kwargs.get('$1', ${2:None})"
         ],
-        "description": null
+        "description": ""
     },
     "args": {
         "prefix": "args",
         "body": [
             "*args${1:,}${0}"
         ],
-        "description": null
+        "description": ""
     },
     "kwargs": {
         "prefix": "kwargs",
         "body": [
             "**kwargs${1:,}${0}"
         ],
-        "description": null
+        "description": ""
     },
     "akw": {
         "prefix": "akw",
@@ -820,7 +820,7 @@
             "*args, **kwargs${1:,}${0}",
             ""
         ],
-        "description": null
+        "description": ""
     },
     "lcp list comprehension": {
         "prefix": "lcp",
@@ -828,7 +828,7 @@
             "[${1} for ${2} in ${3:${VISUAL}}]${0}",
             ""
         ],
-        "description": null
+        "description": ""
     },
     "dcp dict comprehension": {
         "prefix": "dcp",
@@ -836,7 +836,7 @@
             "{${1}: ${2} for ${3} in ${4:${VISUAL}}}${0}",
             ""
         ],
-        "description": null
+        "description": ""
     },
     "scp set comprehension": {
         "prefix": "scp",
@@ -844,7 +844,7 @@
             "{${1} for ${2} in ${3:${VISUAL}}}${0}",
             ""
         ],
-        "description": null
+        "description": ""
     },
     "contain \"methods for emulating a container type\" b": {
         "prefix": "contain",
@@ -871,7 +871,7 @@
             "\t${7:pass}",
             ""
         ],
-        "description": null
+        "description": ""
     },
     "context \"context manager methods\" b": {
         "prefix": "context",
@@ -883,7 +883,7 @@
             "\t${2:pass}",
             ""
         ],
-        "description": null
+        "description": ""
     },
     "attr \"methods for customizing attribute access\" b": {
         "prefix": "attr",
@@ -898,7 +898,7 @@
             "\t${3:pass}",
             ""
         ],
-        "description": null
+        "description": ""
     },
     "desc \"methods implementing descriptors\" b": {
         "prefix": "desc",
@@ -913,7 +913,7 @@
             "\t${3:pass}",
             ""
         ],
-        "description": null
+        "description": ""
     },
     "cmp \"methods implementing rich comparison\"": {
         "prefix": "cmp",
@@ -940,7 +940,7 @@
             "\t${7:pass}",
             ""
         ],
-        "description": null
+        "description": ""
     },
     "repr \"methods implementing string representation\"": {
         "prefix": "repr",
@@ -955,7 +955,7 @@
             "\t${3:pass}",
             ""
         ],
-        "description": null
+        "description": ""
     },
     "uni": {
         "prefix": "uni",
@@ -963,7 +963,7 @@
             "def __unicode__(self):",
             "\t${0:representation}"
         ],
-        "description": null
+        "description": ""
     },
     "docs": {
         "prefix": "docs",
@@ -977,7 +977,7 @@
             "\"\"\"",
             ""
         ],
-        "description": null
+        "description": ""
     },
     "sk \"skip unittests\" b": {
         "prefix": "sk",
@@ -985,6 +985,6 @@
             "@unittest.skip(${1:skip_reason})",
             ""
         ],
-        "description": null
-    },
+        "description": ""
+    }
 }
