@@ -12,6 +12,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'mhinz/vim-grepper'
 "Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'jiangmiao/auto-pairs'
 Plug 'neovim/nvim-lspconfig'
 Plug 'hrsh7th/nvim-cmp'
 Plug 'hrsh7th/cmp-nvim-lsp'
@@ -33,6 +34,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'junegunn/fzf', { 'do': './install --all' }  " Plugin outside ~/.vim/plugged with post-update hook
 Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
 Plug 'akinsho/toggleterm.nvim'
 "Plug 'glepnir/dashboard-nvim'
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}

@@ -113,8 +113,10 @@ nvim_lsp['clangd'].setup {
 nvim_lsp['pyright'].setup {
     on_attach = on_attach,
     capabilities = capabilities,
-    python = {
-        envPath = '.',
+    settings = {
+        python = {
+            venvPath = '.'
+        },
     },
     flags = {
         debounce_text_changes = 150,
