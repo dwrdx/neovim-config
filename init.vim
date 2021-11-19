@@ -234,6 +234,25 @@ nnoremap <leader>% :call CopyCurrentFilePath()<CR>
 
   let $FZF_DEFAULT_COMMAND="rg --files"
   let $FZF_DEFAULT_OPTS = '--bind ctrl-a:select-all,alt-n:next-history,alt-p:previous-history,ctrl-n:down,ctrl-p:up'
+
+
+  " use fzf to delete buffers: https://github.com/junegunn/fzf.vim/pull/733
+  function! s:list_buffers()
+    redir => list
+    silent ls
+    redir END
+    return split(list, "\n")
+  endfunction
+  
+  function! s:delete_buffers(lines)
+    execute 'bwipeout' join(map(a:lines, {_, line -> split(line)[0]}))
+  endfunction
+  
+  command! BD call fzf#run(fzf#wrap({
+    \ 'source': s:list_buffers(),
+    \ 'sink*': { lines -> s:delete_buffers(lines) },
+    \ 'options': '--multi --reverse --bind ctrl-a:select-all+accept'
+  \ }))
 " }}}
 
 " {{{ dashboard
@@ -393,5 +412,5 @@ lua require('init')
 " }}}
 
 " {{{ bufdelete.nvim
-  :nnoremap <Leader>q :Bdelete<CR>
+  :nnoremap <Leader>q :BD<CR>
 " }}}
