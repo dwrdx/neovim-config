@@ -8,7 +8,7 @@
 "     - Avoid using standard Vim directory names like 'plugin'
 "   Multiple Plug commands can be written in a single line using | separators
 " ###############################################################################################
-call plug#begin('~/.vim/plugged')
+call plug#begin('~/.nvim/plugged')
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'mhinz/vim-grepper'
 "Plug 'neoclide/coc.nvim', {'branch': 'release'}
