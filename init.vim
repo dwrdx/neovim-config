@@ -376,12 +376,12 @@ nnoremap <leader>s* :Grepper -tool rg -cword -noprompt<cr>
 
 " }}}
 
-
 " ###############################################################################################
 " Plugin Settings - Lau
 " ###############################################################################################
 lua require('init')
 
+  autocmd BufWritePre *.go lua goimports(1000)
 
 " {{{ vs-snippt
   let g:vsnip_snippet_dir = stdpath("config").'/.vsnip'
