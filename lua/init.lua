@@ -9,6 +9,7 @@ local nvim_lsp     = require('lspconfig')
 local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 local cmp          = require('cmp')
 local toggleterm   = require('toggleterm')
+local tree_sitter  = require('nvim-treesitter.configs')
 
 
 g.symbols_outline = {
@@ -60,6 +61,39 @@ g.symbols_outline = {
         TypeParameter = {icon = "T", hl = "TSParameter"}
     }
 }
+
+require'nvim-treesitter.configs'.setup {
+  ensure_installed = "maintained",
+  highlight = {
+    enable = true,
+    custom_captures = {
+      -- Highlight the @foo.bar capture group with the "Identifier" highlight group.
+      ["foo.bar"] = "Identifier",
+    },
+    -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
+    -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
+    -- Using this option may slow down your editor, and you may see some duplicate highlights.
+    -- Instead of true it can also be a list of languages
+    additional_vim_regex_highlighting = false,
+  },
+  incremental_selection = {
+    enable = true,
+    keymaps = {
+      init_selection = "gnn",
+      node_incremental = "grn",
+      scope_incremental = "grc",
+      node_decremental = "grm",
+    },
+  },
+  indent = {
+    enable = true
+  }
+} 
+
+
+
+
+
 
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
     vim.lsp.diagnostic.on_publish_diagnostics, {
@@ -251,3 +285,4 @@ function goimports(timeout_ms)
     vim.lsp.buf.execute_command(action)
   end
 end
+
