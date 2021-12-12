@@ -39,10 +39,9 @@ Plug 'akinsho/toggleterm.nvim'
 "Plug 'glepnir/dashboard-nvim'
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 Plug 'rmagatti/auto-session'
-Plug 'lfv89/vim-interestingwords'
 Plug 'famiu/bufdelete.nvim'
 
-" Plug '~/my-prototype-plugin' " Unmanaged plugin (manually installed and updated)
+Plug 'dwrdx/mywords.nvim' 
 call plug#end()
 
 
@@ -382,6 +381,7 @@ nnoremap <leader>s* :Grepper -tool rg -cword -noprompt<cr>
 lua require('init')
 
   autocmd BufWritePre *.go lua goimports(1000)
+  autocmd BufWritePre *.lua lua vim.lsp.buf.formatting()
 
 " {{{ vs-snippt
   let g:vsnip_snippet_dir = stdpath("config").'/.vsnip'
@@ -414,3 +414,7 @@ lua require('init')
 " {{{ bufdelete.nvim
   :nnoremap <Leader>q :BD<CR>
 " }}}
+
+
+" set foldmethod=expr
+" set foldexpr=nvim_treesitter#foldexpr()
