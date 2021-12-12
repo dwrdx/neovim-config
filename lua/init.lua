@@ -10,6 +10,7 @@ local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protoco
 local cmp          = require('cmp')
 local toggleterm   = require('toggleterm')
 local tree_sitter  = require('nvim-treesitter.configs')
+local mywords      = require('mywords')
 
 
 g.symbols_outline = {
