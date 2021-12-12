@@ -32,7 +32,7 @@ Plugins are managed with [vim-plug](https://github.com/junegunn/vim-plug)
 * glepnir/dashboard-nvim
 * iamcco/markdown-preview.nvim
 * rmagatti/auto-session
-* lfv89/vim-interestingwords
+* dwrdx/mywords.nvim
 * famiu/bufdelete.nvim
 
 ### Utilities
