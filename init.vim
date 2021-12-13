@@ -39,9 +39,10 @@ Plug 'akinsho/toggleterm.nvim'
 "Plug 'glepnir/dashboard-nvim'
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 Plug 'rmagatti/auto-session'
+Plug 'dwrdx/mywords.nvim' 
 Plug 'famiu/bufdelete.nvim'
 
-Plug 'dwrdx/mywords.nvim' 
+" Plug '~/my-prototype-plugin' " Unmanaged plugin (manually installed and updated)
 call plug#end()
 
 
@@ -134,6 +135,7 @@ nnoremap <leader>% :call CopyCurrentFilePath()<CR>
   let g:NERDTreeAutoDeleteBuffer = 1
   let g:NERDTreeShowBookmarks = 1
   let g:NERDTreeCascadeOpenSingleChildDir = 1
+  let g:NERDTreeQuitOnOpen = 1
 
   nmap <F3> :NERDTreeToggle<CR>
 " }}}
@@ -170,9 +172,9 @@ nnoremap <leader>% :call CopyCurrentFilePath()<CR>
     \ 'ctrl-v': 'vsplit' }
   
   " - Popup window (center of the current window)
-  "let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6, 'relative': v:true } }
-  "let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6, 'relative': v:true, 'yoffset': 1.0 } }
-  let g:fzf_layout = { 'window': '10new' }
+  let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6, 'relative': v:true } }
+  " let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6, 'relative': v:true, 'yoffset': 1.0 } }
+  " let g:fzf_layout = { 'window': '10new' }
 
   " - Preview windows (disable)
   let g:fzf_preview_window = []
@@ -202,7 +204,7 @@ nnoremap <leader>% :call CopyCurrentFilePath()<CR>
   let g:fzf_history_dir = '~/.local/share/fzf-history'
 
   nnoremap <silent> <leader>ff :Files<CR>
-  nnoremap <silent> <leader>be :Buffers<CR>
+  nnoremap <silent> <leader>b :Buffers<CR>
   nnoremap <silent> <leader>fw :Windows<CR>
   nnoremap <silent> <leader>fb :BLines<CR>
   "nnoremap <silent> <leader>o :BTags<CR>
@@ -363,8 +365,14 @@ nnoremap <leader>% :call CopyCurrentFilePath()<CR>
 " }}}
 
 " {{{ vim-grepper
-let &statusline .= ' %{grepper#statusline()}'
-nnoremap <leader>s* :Grepper -tool rg -cword -noprompt<cr>
+  let &statusline .= ' %{grepper#statusline()}'
+  highlight Directory
+    \ ctermfg=216 ctermbg=NONE cterm=NONE guifg=#ffaf87 guibg=NONE gui=NONE
+  highlight qfLineNr
+    \ ctermfg=238 ctermbg=NONE cterm=NONE guifg=#444444 guibg=NONE gui=NONE
+  highlight qfSeparator
+    \ ctermfg=243 ctermbg=NONE cterm=NONE guifg=#767676 guibg=NONE gui=NONE
+  nnoremap <leader>s* :Grepper -tool rg -cword -noprompt<cr>
 "let g:grepper = {
 "    \ 'tools': ['ack', 'git', 'rg'],
 "    \ 'ack': {
@@ -416,5 +424,15 @@ lua require('init')
 " }}}
 
 
-" set foldmethod=expr
-" set foldexpr=nvim_treesitter#foldexpr()
+" {{{ treesitter + fold
+  " set foldlevel=2
+  " set foldmethod=expr
+  " set foldexpr=nvim_treesitter#foldexpr()
+" }}}
+
+autocmd BufWritePre *.go lua vim.lsp.buf.formatting_sync(nil, 100)
+autocmd BufWritePre *.py lua vim.lsp.buf.formatting_sync(nil, 100)
+" autocmd BufWritePre *.c lua vim.lsp.buf.formatting_sync(nil, 100)
+" autocmd BufWritePre *.h lua vim.lsp.buf.formatting_sync(nil, 100)
+
+autocmd BufRead,BufNewFile *Jenkinsfile set filetype=groovy

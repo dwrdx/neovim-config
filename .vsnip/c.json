@@ -165,7 +165,7 @@
 	"st": {
 		"prefix": ["st"],
 		"body": [
-			"struct ${1:${TM_FILENAME_BASE}}_T ",
+			"struct ${1:${TM_FILENAME_BASE}}",
 			"{",
 			"    ${2:/* data */}",
 			"}${3: /* optional variable list */};${4}"
@@ -175,10 +175,10 @@
 	"tds": {
 		"prefix": ["tds"],
 		"body": [
-			"typedef struct ${2:$1_Tag }",
+			"typedef struct ${2:$1tag }",
 			"{",
 			"    ${3:/* data */}",
-			"} ${1:${TM_FILENAME_BASE}}_T;"
+			"} ${1:${TM_FILENAME_BASE}}t;"
 		],
 		"description": "Add structure type define"
 	},
@@ -195,10 +195,10 @@
 	"tdu": {
 		"prefix": ["tdu"],
 		"body": [
-			"typedef union ${2:$1_Tag }",
+			"typedef union ${2:$1tag }",
 			"{",
 			"    ${3:/* data */}",
-			"} ${1:${TM_FILENAME_BASE}}_T;"
+			"} ${1:${TM_FILENAME_BASE}}t;"
 		],
 		"description": "Add union type define"
 	},
