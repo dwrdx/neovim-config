@@ -2,6 +2,10 @@
 
 Actively updated neovim configuration that is being used by myself
 
+### How to use
+
+Install [vim-plug](https://github.com/junegunn/vim-plug) then run `:PlugInstall`
+
 ### Plugins
 
 Plugins are managed with [vim-plug](https://github.com/junegunn/vim-plug)
