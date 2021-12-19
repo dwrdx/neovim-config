@@ -21,7 +21,9 @@ endif
 if exists(':GuiFont')
     " Use GuiFont! to ignore font errors
     " GuiFont! Consolas:h14
-    GuiFont! Bitstream\ Vera\ Sans\ Mono:h13
+    " GuiFont! Bitstream\ Vera\ Sans\ Mono:h13
+    GuiFont! BitstreamVeraSansMono\ Nerd\ Font:h13
+
     " set guifont=Consolas:h18
     "Roboto\ Mono\ for\ Powerline:h18
     " GuiFont Roboto\ Mono\ for\ Powerline:h18

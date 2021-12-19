@@ -42,6 +42,11 @@ Plugins are managed with [vim-plug](https://github.com/junegunn/vim-plug)
 * dwrdx/mywords.nvim
 * famiu/bufdelete.nvim
 
+### Beautiful Fonts
+
+This config is using `BitstreamVeraSansMono Nerd Font`
+more patched nerd fonts can be found at [ryanoasis/nerd-fonts](https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts)
+
 ### Utilities
 
 * nvimps.ps1 - a small script to launch nvim TUI from powershell and change the title of powershell with working directory name
