@@ -40,7 +40,9 @@ Plug 'akinsho/toggleterm.nvim'
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 Plug 'rmagatti/auto-session'
 Plug 'dwrdx/mywords.nvim' 
-Plug 'famiu/bufdelete.nvim'
+
+Plug 'kyazdani42/nvim-web-devicons'
+Plug 'romgrk/barbar.nvim'
 
 " Plug '~/my-prototype-plugin' " Unmanaged plugin (manually installed and updated)
 call plug#end()
@@ -105,8 +107,8 @@ set ttyfast                 " Speed up scrolling in Vim
 " {{{ quickfix
   map <silent> <leader>qo :copen<CR>
   map <silent> <leader>qc :cclose<CR>
-  map <silent> <a-,>      :colder<CR>
-  map <silent> <a-.>      :cnewer<CR>
+  map <silent> <C-,>      :colder<CR>
+  map <silent> <C-.>      :cnewer<CR>
 " }}}
 
 " .h file is s source code
@@ -254,20 +256,6 @@ nnoremap <leader>% :call CopyCurrentFilePath()<CR>
     \ 'sink*': { lines -> s:delete_buffers(lines) },
     \ 'options': '--multi --reverse --bind ctrl-a:select-all+accept'
   \ }))
-" }}}
-
-" {{{ dashboard
-  " Default value is clap
-  " let g:dashboard_default_executive ='fzf'
-
-  " let g:dashboard_custom_header = [
-  " \ ' ███╗   ██╗ ███████╗ ██████╗  ██╗   ██╗ ██╗ ███╗   ███╗',
-  " \ ' ████╗  ██║ ██╔════╝██╔═══██╗ ██║   ██║ ██║ ████╗ ████║',
-  " \ ' ██╔██╗ ██║ █████╗  ██║   ██║ ██║   ██║ ██║ ██╔████╔██║',
-  " \ ' ██║╚██╗██║ ██╔══╝  ██║   ██║ ╚██╗ ██╔╝ ██║ ██║╚██╔╝██║',
-  " \ ' ██║ ╚████║ ███████╗╚██████╔╝  ╚████╔╝  ██║ ██║ ╚═╝ ██║',
-  " \ ' ╚═╝  ╚═══╝ ╚══════╝ ╚═════╝    ╚═══╝   ╚═╝ ╚═╝     ╚═╝',
-  " \]
 " }}}
 
 " {{{ markdown preview 
@@ -419,10 +407,6 @@ lua require('init')
 " {{{ vim-interestingwords
 " }}}
 
-" {{{ bufdelete.nvim
-  :nnoremap <Leader>q :BD<CR>
-" }}}
-
 
 " {{{ treesitter + fold
   " set foldlevel=2
@@ -436,3 +420,50 @@ autocmd BufWritePre *.py lua vim.lsp.buf.formatting_sync(nil, 100)
 " autocmd BufWritePre *.h lua vim.lsp.buf.formatting_sync(nil, 100)
 
 autocmd BufRead,BufNewFile *Jenkinsfile set filetype=groovy
+
+
+
+
+" {{{ barbar
+  let bufferline = get(g:, 'bufferline', {})
+  let bufferline.icons = 'buffer_number'
+  let bufferline.closable = v:false
+  " Move to previous/next
+  nnoremap <silent>    <A-,> :BufferPrevious<CR>
+  nnoremap <silent>    <A-.> :BufferNext<CR>
+  " Re-order to previous/next
+  nnoremap <silent>    <A-<> :BufferMovePrevious<CR>
+  nnoremap <silent>    <A->> :BufferMoveNext<CR>
+  " Goto buffer in position...
+  nnoremap <silent>    <A-1> :BufferGoto 1<CR>
+  nnoremap <silent>    <A-2> :BufferGoto 2<CR>
+  nnoremap <silent>    <A-3> :BufferGoto 3<CR>
+  nnoremap <silent>    <A-4> :BufferGoto 4<CR>
+  nnoremap <silent>    <A-5> :BufferGoto 5<CR>
+  nnoremap <silent>    <A-6> :BufferGoto 6<CR>
+  nnoremap <silent>    <A-7> :BufferGoto 7<CR>
+  nnoremap <silent>    <A-8> :BufferGoto 8<CR>
+  nnoremap <silent>    <A-9> :BufferLast<CR>
+  " Pin/unpin buffer
+  nnoremap <silent>    <A-p> :BufferPin<CR>
+  " Close buffer
+  nnoremap <silent>    <A-c> :BufferClose<CR>
+  " Wipeout buffer
+  "                          :BufferWipeout<CR>
+  " Close commands
+  "                          :BufferCloseAllButCurrent<CR>
+  "                          :BufferCloseAllButPinned<CR>
+  "                          :BufferCloseBuffersLeft<CR>
+  "                          :BufferCloseBuffersRight<CR>
+  " Magic buffer-picking mode
+  nnoremap <silent> <C-s>    :BufferPick<CR>
+  " Sort automatically by...
+  nnoremap <silent> <Space>bb :BufferOrderByBufferNumber<CR>
+  nnoremap <silent> <Space>bd :BufferOrderByDirectory<CR>
+  nnoremap <silent> <Space>bl :BufferOrderByLanguage<CR>
+  nnoremap <silent> <Space>bw :BufferOrderByWindowNumber<CR>
+  
+  " Other:
+  " :BarbarEnable - enables barbar (enabled by default)
+  " :BarbarDisable - very bad command, should never be used
+" }}}

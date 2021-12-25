@@ -46,6 +46,8 @@ if exists(':GuiScrollBar')
     GuiScrollBar 1
 endif
 
+let bufferline.icons = v:true
+
 " Right Click Context Menu (Copy-Cut-Paste)
 nnoremap <silent><RightMouse> :call GuiShowContextMenu()<CR>
 inoremap <silent><RightMouse> <Esc>:call GuiShowContextMenu()<CR>

@@ -36,11 +36,11 @@ Plugins are managed with [vim-plug](https://github.com/junegunn/vim-plug)
 * junegunn/fzf.vim
 * tpope/vim-fugitive
 * akinsho/toggleterm.nvim
-* glepnir/dashboard-nvim
 * iamcco/markdown-preview.nvim
 * rmagatti/auto-session
+* kyazdani42/nvim-web-devicons
+* romgrk/barbar.nvim
 * dwrdx/mywords.nvim
-* famiu/bufdelete.nvim
 
 ### Beautiful Fonts
 
