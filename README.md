@@ -40,6 +40,7 @@ Plugins are managed with [vim-plug](https://github.com/junegunn/vim-plug)
 * rmagatti/auto-session
 * kyazdani42/nvim-web-devicons
 * romgrk/barbar.nvim
+* danymat/neogen
 * dwrdx/mywords.nvim
 
 ### Beautiful Fonts

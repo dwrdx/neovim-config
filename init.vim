@@ -43,6 +43,7 @@ Plug 'dwrdx/mywords.nvim'
 
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'romgrk/barbar.nvim'
+Plug 'danymat/neogen'
 
 " Plug '~/my-prototype-plugin' " Unmanaged plugin (manually installed and updated)
 call plug#end()
@@ -467,3 +468,5 @@ autocmd BufRead,BufNewFile *Jenkinsfile set filetype=groovy
   " :BarbarEnable - enables barbar (enabled by default)
   " :BarbarDisable - very bad command, should never be used
 " }}}
+
+  nnoremap <silent> <leader>nf :lua require('neogen').generate()<CR>
