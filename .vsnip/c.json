@@ -212,14 +212,14 @@
 	"fileh": {
 		"prefix": ["fileh"],
 		"body": [
-			"/* ",
-			" * ${TM_FILENAME}",
+			"/**",
+			" * @file ${TM_FILENAME}",
+			" * @author Edward XU",
+			" * @brief ${1}",
+			" * @version 0.1",
+			" * @date ${CURRENT_YEAR}-${CURRENT_MONTH}-${CURRENT_DATE}",
 			" * ",
-			" * ${1}",
-			" * ",
-			" * Created by Edward XU",
-			" * ",
-			" * Log: ",
+			" * @copyright Copyright (c) ${CURRENT_YEAR}",
 			" * ",
 			" */"
 		],
