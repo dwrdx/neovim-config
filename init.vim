@@ -39,6 +39,7 @@ Plug 'akinsho/toggleterm.nvim'
 "Plug 'glepnir/dashboard-nvim'
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 Plug 'rmagatti/auto-session'
+Plug 'sbdchd/neoformat'
 Plug 'dwrdx/mywords.nvim' 
 
 Plug 'kyazdani42/nvim-web-devicons'
@@ -362,23 +363,21 @@ nnoremap <leader>% :call CopyCurrentFilePath()<CR>
   highlight qfSeparator
     \ ctermfg=243 ctermbg=NONE cterm=NONE guifg=#767676 guibg=NONE gui=NONE
   nnoremap <leader>s* :Grepper -tool rg -cword -noprompt<cr>
-"let g:grepper = {
-"    \ 'tools': ['ack', 'git', 'rg'],
-"    \ 'ack': {
-"    \   'grepprg':    'C:\\Strawberry\\perl\\bin\\perl.exe C:\\Users\\edwar\\AppData\\Local\\nvim\\ack-v3.5.0.pl',
-"    \   'grepformat': '%f:%l:%m',
-"    \   'escape':     '\+*^$()[]',
-"    \ }}
+  "let g:grepper = {
+  "    \ 'tools': ['ack', 'git', 'rg'],
+  "    \ 'ack': {
+  "    \   'grepprg':    'C:\\Strawberry\\perl\\bin\\perl.exe C:\\Users\\edwar\\AppData\\Local\\nvim\\ack-v3.5.0.pl',
+  "    \   'grepformat': '%f:%l:%m',
+  "    \   'escape':     '\+*^$()[]',
+  "    \ }}
 
 " }}}
 
-" ###############################################################################################
-" Plugin Settings - Lau
-" ###############################################################################################
-lua require('init')
 
-  autocmd BufWritePre *.go lua goimports(1000)
-  autocmd BufWritePre *.lua lua vim.lsp.buf.formatting()
+" {{{ load lua setting
+  lua require('init')
+" }}}
+
 
 " {{{ vs-snippt
   let g:vsnip_snippet_dir = stdpath("config").'/.vsnip'
@@ -405,25 +404,29 @@ lua require('init')
   "xmap        S   <Plug>(vsnip-cut-text)
 " }}}
 
-" {{{ vim-interestingwords
-" }}}
-
-
 " {{{ treesitter + fold
   " set foldlevel=2
   " set foldmethod=expr
   " set foldexpr=nvim_treesitter#foldexpr()
 " }}}
 
-autocmd BufWritePre *.go lua vim.lsp.buf.formatting_sync(nil, 100)
-autocmd BufWritePre *.py lua vim.lsp.buf.formatting_sync(nil, 100)
-" autocmd BufWritePre *.c lua vim.lsp.buf.formatting_sync(nil, 100)
-" autocmd BufWritePre *.h lua vim.lsp.buf.formatting_sync(nil, 100)
+" {{{ autocmd
+  " set file type
+  autocmd BufRead,BufNewFile *Jenkinsfile set filetype=groovy
 
-autocmd BufRead,BufNewFile *Jenkinsfile set filetype=groovy
+  autocmd BufWritePre *.go lua goimports(1000)
 
+  " use sbdchd/neoformat to format code on saving
+  augroup fmt
+    autocmd!
+    autocmd BufWritePre * undojoin | Neoformat
+  augroup END
 
-
+  " autocmd BufWritePre *.py lua vim.lsp.buf.formatting_sync(nil, 100)
+  " autocmd BufWritePre *.lua lua vim.lsp.buf.formatting(nil, 100)
+  " autocmd BufWritePre *.c lua vim.lsp.buf.formatting_sync(nil, 100)
+  " autocmd BufWritePre *.h lua vim.lsp.buf.formatting_sync(nil, 100)
+" }}}
 
 " {{{ barbar
   let bufferline = get(g:, 'bufferline', {})
@@ -469,4 +472,6 @@ autocmd BufRead,BufNewFile *Jenkinsfile set filetype=groovy
   " :BarbarDisable - very bad command, should never be used
 " }}}
 
+" {{{ neogen
   nnoremap <silent> <leader>nf :lua require('neogen').generate()<CR>
+" }}
