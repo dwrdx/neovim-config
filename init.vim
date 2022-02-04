@@ -46,6 +46,7 @@ Plug 'kyazdani42/nvim-web-devicons'
 Plug 'romgrk/barbar.nvim'
 Plug 'danymat/neogen'
 
+Plug '~/Documents/01.WorkArea/clang-expand.nvim'
 " Plug '~/my-prototype-plugin' " Unmanaged plugin (manually installed and updated)
 call plug#end()
 
@@ -258,67 +259,30 @@ nnoremap <leader>% :call CopyCurrentFilePath()<CR>
     \ 'sink*': { lines -> s:delete_buffers(lines) },
     \ 'options': '--multi --reverse --bind ctrl-a:select-all+accept'
   \ }))
+
+  " use fzf to search keymaps
+  function! s:list_keymaps()
+    redir => list
+    silent map
+    redir END
+    return split(list, "\n")
+  endfunction
+  
+  command! Whichkey call fzf#run(fzf#wrap({
+    \ 'source': s:list_keymaps()
+  \ }))
 " }}}
 
 " {{{ markdown preview 
-" set to 1, nvim will open the preview window after entering the markdown buffer
-" default: 0
   let g:mkdp_auto_start = 0
-  
-  " set to 1, the nvim will auto close current preview window when change
-  " from markdown buffer to another buffer
-  " default: 1
   let g:mkdp_auto_close = 1
-  
-  " set to 1, the vim will refresh markdown when save the buffer or
-  " leave from insert mode, default 0 is auto refresh markdown as you edit or
-  " move the cursor
-  " default: 0
   let g:mkdp_refresh_slow = 0
-  
-  " set to 1, the MarkdownPreview command can be use for all files,
-  " by default it can be use in markdown file
-  " default: 0
   let g:mkdp_command_for_global = 0
-  
-  " set to 1, preview server available to others in your network
-  " by default, the server listens on localhost (127.0.0.1)
-  " default: 0
   let g:mkdp_open_to_the_world = 0
-  
-  " use custom IP to open preview page
-  " useful when you work in remote vim and preview on local browser
-  " more detail see: https://github.com/iamcco/markdown-preview.nvim/pull/9
-  " default empty
   let g:mkdp_open_ip = ''
-  
-  " specify browser to open preview page
-  " default: ''
   let g:mkdp_browser = ''
-  
-  " set to 1, echo preview page url in command line when open preview page
-  " default is 0
   let g:mkdp_echo_preview_url = 0
-  
-  " a custom vim function name to open preview page
-  " this function will receive url as param
-  " default is empty
   let g:mkdp_browserfunc = ''
-  
-  " options for markdown render
-  " mkit: markdown-it options for render
-  " katex: katex options for math
-  " uml: markdown-it-plantuml options
-  " maid: mermaid options
-  " disable_sync_scroll: if disable sync scroll, default 0
-  " sync_scroll_type: 'middle', 'top' or 'relative', default value is 'middle'
-  "   middle: mean the cursor position alway show at the middle of the preview page
-  "   top: mean the vim top viewport alway show at the top of the preview page
-  "   relative: mean the cursor position alway show at the relative positon of the preview page
-  " hide_yaml_meta: if hide yaml metadata, default is 1
-  " sequence_diagrams: js-sequence-diagrams options
-  " content_editable: if enable content editable for preview page, default: v:false
-  " disable_filename: if disable filename header for preview page, default: 0
   let g:mkdp_preview_options = {
       \ 'mkit': {},
       \ 'katex': {},
@@ -332,24 +296,10 @@ nnoremap <leader>% :call CopyCurrentFilePath()<CR>
       \ 'content_editable': v:false,
       \ 'disable_filename': 0
       \ }
-  
-  " use a custom markdown style must be absolute path
-  " like '/Users/username/markdown.css' or expand('~/markdown.css')
   let g:mkdp_markdown_css = ''
-  
-  " use a custom highlight style must absolute path
-  " like '/Users/username/highlight.css' or expand('~/highlight.css')
   let g:mkdp_highlight_css = ''
-  
-  " use a custom port to start server or random for empty
   let g:mkdp_port = ''
-  
-  " preview page title
-  " ${name} will be replace with the file name
   let g:mkdp_page_title = '「${name}」'
-  
-  " recognized filetypes
-  " these filetypes will have MarkdownPreview... commands
   let g:mkdp_filetypes = ['markdown']
 
 " }}}
@@ -362,15 +312,12 @@ nnoremap <leader>% :call CopyCurrentFilePath()<CR>
     \ ctermfg=238 ctermbg=NONE cterm=NONE guifg=#444444 guibg=NONE gui=NONE
   highlight qfSeparator
     \ ctermfg=243 ctermbg=NONE cterm=NONE guifg=#767676 guibg=NONE gui=NONE
-  nnoremap <leader>s* :Grepper -tool rg -cword -noprompt<cr>
-  "let g:grepper = {
-  "    \ 'tools': ['ack', 'git', 'rg'],
-  "    \ 'ack': {
-  "    \   'grepprg':    'C:\\Strawberry\\perl\\bin\\perl.exe C:\\Users\\edwar\\AppData\\Local\\nvim\\ack-v3.5.0.pl',
-  "    \   'grepformat': '%f:%l:%m',
-  "    \   'escape':     '\+*^$()[]',
-  "    \ }}
 
+  nnoremap <leader>s* :Grepper -tool rg -cword -noprompt<cr>
+  nnoremap <leader>sc :GrepperRg -tc <cword><cr>
+  nnoremap <leader>sm :GrepperRg -tcmake <cword><cr>
+  nnoremap <leader>sp :GrepperRg -tpy <cword><cr>
+  nnoremap <leader>sg :GrepperRg -tgo <cword><cr>
 " }}}
 
 
@@ -432,13 +379,11 @@ nnoremap <leader>% :call CopyCurrentFilePath()<CR>
   let bufferline = get(g:, 'bufferline', {})
   let bufferline.icons = 'buffer_number'
   let bufferline.closable = v:false
-  " Move to previous/next
+
   nnoremap <silent>    <A-,> :BufferPrevious<CR>
   nnoremap <silent>    <A-.> :BufferNext<CR>
-  " Re-order to previous/next
   nnoremap <silent>    <A-<> :BufferMovePrevious<CR>
   nnoremap <silent>    <A->> :BufferMoveNext<CR>
-  " Goto buffer in position...
   nnoremap <silent>    <A-1> :BufferGoto 1<CR>
   nnoremap <silent>    <A-2> :BufferGoto 2<CR>
   nnoremap <silent>    <A-3> :BufferGoto 3<CR>
@@ -450,7 +395,6 @@ nnoremap <leader>% :call CopyCurrentFilePath()<CR>
   nnoremap <silent>    <A-9> :BufferLast<CR>
   " Pin/unpin buffer
   nnoremap <silent>    <A-p> :BufferPin<CR>
-  " Close buffer
   nnoremap <silent>    <A-c> :BufferClose<CR>
   " Wipeout buffer
   "                          :BufferWipeout<CR>
