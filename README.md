@@ -4,10 +4,11 @@ Actively updated neovim configuration that is being used by myself
 
 ### How to use
 
-1. Clone this project to your nvim config
-2. Install [vim-plug](https://github.com/junegunn/vim-plug) then run `:PlugInstall`
-3. Install pyright by `npm i -g pyright` to get python lsp working
-4. Install [clangd](https://clangd.llvm.org/installation) to get clangd lsp working
+1. Find the nvim config locaton on your computer by running `:echo stdpath('config')` in neovim
+2. Clone this project to your nvim config folder
+3. Install [vim-plug](https://github.com/junegunn/vim-plug) then run `:PlugInstall`
+4. Install pyright by `npm i -g pyright` to get python lsp working
+5. Install [clangd](https://clangd.llvm.org/installation) to get clangd lsp working
 
 ### Plugins
 
