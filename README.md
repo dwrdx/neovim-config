@@ -52,8 +52,12 @@ more patched nerd fonts can be found at [ryanoasis/nerd-fonts](https://github.co
 
 ### Utilities
 
-* nvimps.ps1 - a small script to launch nvim TUI from powershell and change the title of powershell with working directory name
-* neovim.bat - a small script to launch nvim TUI from command prompt and change the title of cmd with working directory name
+* nvimps.ps1 - a small script to launch nvim TUI from powershell and change the title of powershell with 
+               working directory name
+* neovim.bat - a small script to launch nvim TUI from command prompt and change the title of cmd with 
+               working directory name
+* add_right_context_menu.reg - an example Windows Registry file to add `Edit with NeoVim` to right click context menu 
+                               on Windows, remember to change the path of neovim executable accordingly
 
 
 ### Snippets
