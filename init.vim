@@ -46,7 +46,6 @@ Plug 'kyazdani42/nvim-web-devicons'
 Plug 'romgrk/barbar.nvim'
 Plug 'danymat/neogen'
 
-Plug '~/Documents/01.WorkArea/clang-expand.nvim'
 " Plug '~/my-prototype-plugin' " Unmanaged plugin (manually installed and updated)
 call plug#end()
 
