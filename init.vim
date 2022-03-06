@@ -421,6 +421,16 @@ nnoremap <leader>% :call CopyCurrentFilePath()<CR>
 " }}
 
 " {{{ startify
+
+  let g:ascii = [
+          \'    _  _  ____  _____    _  _  ____  __  __ ',
+          \'   ( \( )( ___)(  _  )  ( \/ )(_  _)(  \/  )',
+          \'    )  (  )__)  )(_)(    \  /  _)(_  )    ( ',
+          \'   (_)\_)(____)(_____)    \/  (____)(_/\/\_)',
+          \]
+
+  let g:startify_custom_header = g:ascii
+
   function! s:gitModified()
       let files = systemlist('git ls-files -m')
       return map(files, "{'line': v:val, 'path': v:val}")
