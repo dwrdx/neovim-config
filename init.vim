@@ -421,25 +421,29 @@ nnoremap <leader>% :call CopyCurrentFilePath()<CR>
 " }}
 
 " {{{ startify
-function! s:gitModified()
-    let files = systemlist('git ls-files -m')
-    return map(files, "{'line': v:val, 'path': v:val}")
-endfunction
+  function! s:gitModified()
+      let files = systemlist('git ls-files -m')
+      return map(files, "{'line': v:val, 'path': v:val}")
+  endfunction
+  
+  " same as above, but show untracked files, honouring .gitignore
+  function! s:gitUntracked()
+      let files = systemlist('git ls-files -o --exclude-standard')
+      return map(files, "{'line': v:val, 'path': v:val}")
+  endfunction
+  
+  let g:startify_session_dir = '~/.vim/session'
 
-" same as above, but show untracked files, honouring .gitignore
-function! s:gitUntracked()
-    let files = systemlist('git ls-files -o --exclude-standard')
-    return map(files, "{'line': v:val, 'path': v:val}")
-endfunction
-
-let g:startify_session_dir = '~/.vim/session'
-
-let g:startify_lists = [
-        \ { 'type': 'files',     'header': ['   MRU']            },
-        \ { 'type': 'sessions',  'header': ['   Sessions']       },
-        \ { 'type': 'bookmarks', 'header': ['   Bookmarks']      },
-        \ { 'type': function('s:gitModified'),  'header': ['   git modified']},
-        \ { 'type': function('s:gitUntracked'), 'header': ['   git untracked']},
-        \ { 'type': 'commands',  'header': ['   Commands']       },
-        \ ]
+  let g:startify_commands = [
+      \ {'c': 'echo stdpath("config")'},
+      \ ]
+  
+  let g:startify_lists = [
+          \ { 'type': 'sessions',  'header': ['   Sessions']       },
+          \ { 'type': 'files',     'header': ['   MRU']            },
+          \ { 'type': 'bookmarks', 'header': ['   Bookmarks']      },
+          \ { 'type': function('s:gitModified'),  'header': ['   Git modified']},
+          \ { 'type': function('s:gitUntracked'), 'header': ['   Git untracked']},
+          \ { 'type': 'commands',  'header': ['   Commands']       },
+          \ ]
 " }}}
