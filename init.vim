@@ -45,6 +45,7 @@ Plug 'dwrdx/mywords.nvim'
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'romgrk/barbar.nvim'
 Plug 'danymat/neogen'
+Plug 'mhinz/vim-startify'
 
 " Plug '~/my-prototype-plugin' " Unmanaged plugin (manually installed and updated)
 call plug#end()
@@ -418,3 +419,27 @@ nnoremap <leader>% :call CopyCurrentFilePath()<CR>
 " {{{ neogen
   nnoremap <silent> <leader>nf :lua require('neogen').generate()<CR>
 " }}
+
+" {{{ startify
+function! s:gitModified()
+    let files = systemlist('git ls-files -m')
+    return map(files, "{'line': v:val, 'path': v:val}")
+endfunction
+
+" same as above, but show untracked files, honouring .gitignore
+function! s:gitUntracked()
+    let files = systemlist('git ls-files -o --exclude-standard')
+    return map(files, "{'line': v:val, 'path': v:val}")
+endfunction
+
+let g:startify_session_dir = '~/.vim/session'
+
+let g:startify_lists = [
+        \ { 'type': 'files',     'header': ['   MRU']            },
+        \ { 'type': 'sessions',  'header': ['   Sessions']       },
+        \ { 'type': 'bookmarks', 'header': ['   Bookmarks']      },
+        \ { 'type': function('s:gitModified'),  'header': ['   git modified']},
+        \ { 'type': function('s:gitUntracked'), 'header': ['   git untracked']},
+        \ { 'type': 'commands',  'header': ['   Commands']       },
+        \ ]
+" }}}

@@ -43,6 +43,7 @@ Plugins are managed with [vim-plug](https://github.com/junegunn/vim-plug)
 * romgrk/barbar.nvim
 * danymat/neogen
 * sbdchd/neoformat
+* mhinz/vim-startify
 * dwrdx/mywords.nvim
 
 ### Beautiful Fonts
