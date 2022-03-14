@@ -9,6 +9,7 @@ Actively updated neovim configuration that is being used by myself
 3. Install [vim-plug](https://github.com/junegunn/vim-plug) then run `:PlugInstall`
 4. Install pyright by `npm i -g pyright` to get python lsp working
 5. Install [clangd](https://clangd.llvm.org/installation) to get clangd lsp working
+6. Install [vscode-json-language-server](https://github.com/hrsh7th/vscode-langservers-extracted) by `npm i -g vscode-langservers-extracted` to get JSON lsp working
 
 ### Plugins
 

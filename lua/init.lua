@@ -157,6 +157,8 @@ nvim_lsp['pyright'].setup {
     }
 }
 
+nvim_lsp['jsonls'].setup { }
+
 nvim_lsp['cmake'].setup { }
 nvim_lsp['gopls'].setup { 
 	cmd = {'gopls', 'serve'},
