@@ -129,6 +129,7 @@ nnoremap <leader>% :call CopyCurrentFilePath()<CR>
 " ###############################################################################################
 " {{{ symbols-outline
   nmap <F4> :SymbolsOutline<CR>
+  nmap <a-o> :SymbolsOutline<CR>
 " }}}
 
 
@@ -143,6 +144,7 @@ nnoremap <leader>% :call CopyCurrentFilePath()<CR>
   let g:NERDTreeQuitOnOpen = 1
 
   nmap <F3> :NERDTreeToggle<CR>
+  nmap <a-m> :NERDTreeToggle<CR>
 " }}}
 
 " {{{ airline
