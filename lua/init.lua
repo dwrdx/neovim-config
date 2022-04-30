@@ -63,7 +63,7 @@ g.symbols_outline = {
 }
 
 require'nvim-treesitter.configs'.setup {
-  ensure_installed = "maintained",
+  ensure_installed = "all",
   highlight = {
     enable = true,
     custom_captures = {
@@ -190,8 +190,40 @@ cmp.setup({
         end,
     },
     mapping = {
-        ["<C-p>"] = cmp.mapping.select_prev_item(),
-        ["<C-n>"] = cmp.mapping.select_next_item(),
+        ['<Down>'] = cmp.mapping(cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }), {'i'}),
+        ['<Up>'] = cmp.mapping(cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }), {'i'}),
+        ['<C-n>'] = cmp.mapping({
+            c = function()
+                if cmp.visible() then
+                    cmp.select_next_item()
+                else
+                    vim.api.nvim_feedkeys(t('<Down>'), 'n', true)
+                end
+            end,
+            i = function(fallback)
+                if cmp.visible() then
+                    cmp.select_next_item()
+                else
+                    fallback()
+                end
+            end
+        }),
+        ['<C-p>'] = cmp.mapping({
+            c = function()
+                if cmp.visible() then
+                    cmp.select_prev_item()
+                else
+                    vim.api.nvim_feedkeys(t('<Up>'), 'n', true)
+                end
+            end,
+            i = function(fallback)
+                if cmp.visible() then
+                    cmp.select_prev_item()
+                else
+                    fallback()
+                end
+            end
+        }),
         ["<C-k>"] = cmp.mapping.select_prev_item(),
         ["<C-j>"] = cmp.mapping.select_next_item(),
         ['<C-d>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
@@ -216,19 +248,19 @@ cmp.setup({
 })
 
 -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
--- cmp.setup.cmdline('/', {
---   sources = {
---     { name = 'buffer' }
---   }
--- })
+cmp.setup.cmdline('/', {
+  sources = {
+    { name = 'buffer' }
+  }
+})
 
 -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
 cmp.setup.cmdline(':', {
     sources = cmp.config.sources({
-            { name = 'path' }
-        }, {
-            { name = 'cmdline' }
-        })
+        { name = 'path' }
+    }, {
+        { name = 'cmdline' }
+    })
 })
 
 toggleterm.setup {

@@ -11,7 +11,6 @@
 call plug#begin('~/.nvim/plugged')
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'mhinz/vim-grepper'
-"Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'jiangmiao/auto-pairs'
 Plug 'neovim/nvim-lspconfig'
 Plug 'hrsh7th/nvim-cmp'
@@ -36,7 +35,6 @@ Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 Plug 'akinsho/toggleterm.nvim'
-"Plug 'glepnir/dashboard-nvim'
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 Plug 'rmagatti/auto-session'
 Plug 'sbdchd/neoformat'
@@ -354,16 +352,23 @@ nnoremap <leader>% :call CopyCurrentFilePath()<CR>
 " }}}
 
 " {{{ treesitter + fold
-  " set foldlevel=2
-  " set foldmethod=expr
-  " set foldexpr=nvim_treesitter#foldexpr()
+  function! EnableFold()
+    set foldlevel=2
+    set foldmethod=expr
+    set foldexpr=nvim_treesitter#foldexpr()
+  endfunction
 " }}}
 
 " {{{ autocmd
   " set file type
   autocmd BufRead,BufNewFile *Jenkinsfile set filetype=groovy
-
   autocmd BufWritePre *.go lua goimports(1000)
+
+  " use sbdchd/neoformat to format code on saving
+  augroup autofold
+    autocmd!
+    autocmd FileType json call EnableFold()
+  augroup END
 
   " use sbdchd/neoformat to format code on saving
   augroup fmt
