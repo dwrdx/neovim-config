@@ -77,6 +77,7 @@ set foldmethod=manual       " use manual folding
 set diffopt=filler,vertical " default behavior for diff
 set cc=120                  " set an 80 column border for good coding style
 set hidden
+filetype on
 filetype plugin indent on   "allow auto-indenting depending on file type
 syntax on                   " syntax highlighting
 set clipboard=unnamedplus   " using system clipboard
@@ -352,10 +353,16 @@ nnoremap <leader>% :call CopyCurrentFilePath()<CR>
 " }}}
 
 " {{{ treesitter + fold
-  function! EnableFold()
-    set foldlevel=2
-    set foldmethod=expr
-    set foldexpr=nvim_treesitter#foldexpr()
+  set foldlevel=2
+  set foldmethod=expr
+  set foldexpr=nvim_treesitter#foldexpr()
+
+  function! ToggleFold()
+    if &filetype ==# 'json'
+      set foldenable
+    else
+      set nofoldenable
+    endif
   endfunction
 " }}}
 
@@ -367,7 +374,7 @@ nnoremap <leader>% :call CopyCurrentFilePath()<CR>
   " use sbdchd/neoformat to format code on saving
   augroup autofold
     autocmd!
-    autocmd FileType json call EnableFold()
+    autocmd BufRead *.* call ToggleFold()
   augroup END
 
   " use sbdchd/neoformat to format code on saving
