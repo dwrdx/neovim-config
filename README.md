@@ -14,13 +14,13 @@ Actively updated neovim configuration that is being used by myself
 ### Screen Shots
 
 Start Dashboard
-![start](https://ibb.co/XVjWRK8)
+![start](https://i.ibb.co/V3JL4zm/start.png)
 
 Find Files with fzf
-![fzf](https://ibb.co/yWTscp0)
+![fzf](https://i.ibb.co/XSBJrDX/fzf.png)
 
 Open Terminal
-![terminal](https://ibb.co/VTZ55Mg)
+![terminal](https://i.ibb.co/vkGRRL3/terminal.png)
 
 
 ### Plugins

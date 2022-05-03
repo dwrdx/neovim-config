@@ -64,6 +64,7 @@ g.symbols_outline = {
 
 require'nvim-treesitter.configs'.setup {
   ensure_installed = "all",
+  ignore_install = { "swift" },
   highlight = {
     enable = true,
     custom_captures = {
