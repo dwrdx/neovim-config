@@ -11,6 +11,18 @@ Actively updated neovim configuration that is being used by myself
 5. Install [clangd](https://clangd.llvm.org/installation) to get clangd lsp working
 6. Install [vscode-json-language-server](https://github.com/hrsh7th/vscode-langservers-extracted) by `npm i -g vscode-langservers-extracted` to get JSON lsp working
 
+### Screen Shots
+
+Start Dashboard
+![start](https://ibb.co/XVjWRK8)
+
+Find Files with fzf
+![fzf](https://ibb.co/yWTscp0)
+
+Open Terminal
+![terminal](https://ibb.co/VTZ55Mg)
+
+
 ### Plugins
 
 Plugins are managed with [vim-plug](https://github.com/junegunn/vim-plug)
