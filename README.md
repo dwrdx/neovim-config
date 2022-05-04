@@ -11,6 +11,30 @@ Actively updated neovim configuration that is being used by myself
 5. Install [clangd](https://clangd.llvm.org/installation) to get clangd lsp working
 6. Install [vscode-json-language-server](https://github.com/hrsh7th/vscode-langservers-extracted) by `npm i -g vscode-langservers-extracted` to get JSON lsp working
 7. Follow [nvim-treesitter quickstart](https://github.com/nvim-treesitter/nvim-treesitter#quickstart) to get treesitter installed, NOTE: this step requires a C compiler on your computer
+8. Install [ripgrep](https://github.com/BurntSushi/ripgrep) for searching
+
+### Key Mappings
+
+Here are the most frequent used key mappings, for the full list please check the source code
+
+|Key Mapping|Function|
+|-----------|--------|
+| \<leader\>tm | Toggle terminal|
+| \<leader\>qo | Open quickfix|
+| \<leader\>qc | Close quickfix|
+| Alt-o        | Toggle symbols outline|
+| Alt-m        | Toggle NERDTree|
+| Alt-,        | Previous buffer|
+| Alt-.        | Next buffer|
+| \<leader\>ff | Use fzf to find files|
+| \<leader\>b  | Use fzf to find buffers|
+| \<leader\>b  | Use fzf to find buffers|
+| \<leader\>s* | Search words in all files with rg|
+| \<leader\>sc | Search words in clang files with rg|
+| \<leader\>sp | Search words in python files with rg|
+| \<leader\>sg | Search words in golang files with rg|
+| gd | Goto definition|
+| gD | Goto declaration|
 
 ### Screen Shots
 
