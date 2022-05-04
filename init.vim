@@ -79,10 +79,10 @@ set cc=120                  " set an 80 column border for good coding style
 set hidden
 filetype on
 filetype plugin indent on   "allow auto-indenting depending on file type
+filetype plugin on
 syntax on                   " syntax highlighting
 set clipboard=unnamedplus   " using system clipboard
 set completeopt=menu,menuone,noselect
-filetype plugin on
 colorscheme onedark
 set ttyfast                 " Speed up scrolling in Vim
 " set spell                 " enable spell check (may need to download language package)
@@ -366,12 +366,22 @@ nnoremap <leader>% :call CopyCurrentFilePath()<CR>
   endfunction
 " }}}
 
+" {{{ neoformat
+ let g:neoformat_cpp_clangformat = {
+    \ 'exe': 'clang-format',
+    \ 'args': ['--style=file']
+  \} 
+  let g:neoformat_enabled_cpp = ['clangformat']
+  let g:neoformat_enabled_c = ['clangformat']
+  let g:neoformat_basic_format_retab = 1
+  let g:neoformat_basic_format_trim = 1
+" }}}
+
 " {{{ autocmd
   " set file type
   autocmd BufRead,BufNewFile *Jenkinsfile set filetype=groovy
   autocmd BufWritePre *.go lua goimports(1000)
 
-  " use sbdchd/neoformat to format code on saving
   augroup autofold
     autocmd!
     autocmd BufRead *.* call ToggleFold()
@@ -380,13 +390,13 @@ nnoremap <leader>% :call CopyCurrentFilePath()<CR>
   " use sbdchd/neoformat to format code on saving
   augroup fmt
     autocmd!
-    autocmd BufWritePre * undojoin | Neoformat
-  augroup END
+    autocmd BufWritePre *.py undojoin | Neoformat
+    autocmd BufWritePre *.go undojoin | Neoformat
 
-  " autocmd BufWritePre *.py lua vim.lsp.buf.formatting_sync(nil, 100)
-  " autocmd BufWritePre *.lua lua vim.lsp.buf.formatting(nil, 100)
-  " autocmd BufWritePre *.c lua vim.lsp.buf.formatting_sync(nil, 100)
-  " autocmd BufWritePre *.h lua vim.lsp.buf.formatting_sync(nil, 100)
+    " uncomment below sections for auto formating clang using clang-format
+    " autocmd BufWritePre *.c undojoin | Neoformat
+    " autocmd BufWritePre *.h undojoin | Neoformat
+  augroup END
 " }}}
 
 " {{{ barbar
@@ -431,6 +441,7 @@ nnoremap <leader>% :call CopyCurrentFilePath()<CR>
 " }}}
 
 " {{{ neogen
+  " keymaps for generating docstring
   nnoremap <silent> <leader>nf :lua require('neogen').generate()<CR>
 " }}
 

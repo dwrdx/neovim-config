@@ -10,6 +10,7 @@ Actively updated neovim configuration that is being used by myself
 4. Install pyright by `npm i -g pyright` to get python lsp working
 5. Install [clangd](https://clangd.llvm.org/installation) to get clangd lsp working
 6. Install [vscode-json-language-server](https://github.com/hrsh7th/vscode-langservers-extracted) by `npm i -g vscode-langservers-extracted` to get JSON lsp working
+7. Follow [nvim-treesitter quickstart](https://github.com/nvim-treesitter/nvim-treesitter#quickstart) to get treesitter installed, NOTE: this step requires a C compiler on your computer
 
 ### Screen Shots
 
@@ -77,4 +78,7 @@ more patched nerd fonts can be found at [ryanoasis/nerd-fonts](https://github.co
 ### Snippets
 
 * clang
+* golang
+* javascript
+* markdown
 * python from [NexSabre/vscode-python-snippets](https://github.com/NexSabre/vscode-python-snippets)
