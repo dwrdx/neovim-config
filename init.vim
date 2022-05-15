@@ -239,7 +239,7 @@ nnoremap <leader>% :call CopyCurrentFilePath()<CR>
 
   command! -nargs=* -bang Rg call RipgrepFzf(<q-args>, <bang>0)
 
-  let $FZF_DEFAULT_COMMAND="rg --files"
+  let $FZF_DEFAULT_COMMAND="rg --files --no-ignore-vcs"
   let $FZF_DEFAULT_OPTS = '--bind ctrl-a:select-all,alt-n:next-history,alt-p:previous-history,ctrl-n:down,ctrl-p:up'
 
 
@@ -418,7 +418,7 @@ nnoremap <leader>% :call CopyCurrentFilePath()<CR>
   nnoremap <silent>    <A-8> :BufferGoto 8<CR>
   nnoremap <silent>    <A-9> :BufferLast<CR>
   " Pin/unpin buffer
-  nnoremap <silent>    <A-p> :BufferPin<CR>
+  " nnoremap <silent>    <A-p> :BufferPin<CR>
   nnoremap <silent>    <A-c> :BufferClose<CR>
   " Wipeout buffer
   "                          :BufferWipeout<CR>
