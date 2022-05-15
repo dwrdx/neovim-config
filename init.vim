@@ -397,6 +397,9 @@ nnoremap <leader>% :call CopyCurrentFilePath()<CR>
     " autocmd BufWritePre *.c undojoin | Neoformat
     " autocmd BufWritePre *.h undojoin | Neoformat
   augroup END
+
+  " make quickfix window size fixed to 10 rows
+  autocmd FIleType qf 10wincmd_
 " }}}
 
 " {{{ barbar
