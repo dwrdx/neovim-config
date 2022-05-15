@@ -366,6 +366,12 @@ nnoremap <leader>% :call CopyCurrentFilePath()<CR>
   endfunction
 " }}}
 
+" {{{ gitgutter
+  nmap <leader>n <Plug>(GitGutterNextHunk)
+  nmap <leader>p <Plug>(GitGutterPrevHunk)
+  command! Gqf GitGutterQuickFix | copen
+" }}}
+
 " {{{ neoformat
  let g:neoformat_cpp_clangformat = {
     \ 'exe': 'clang-format',
