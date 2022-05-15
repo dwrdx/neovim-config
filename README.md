@@ -12,6 +12,7 @@ Actively updated neovim configuration that is being used by myself
 6. Install [vscode-json-language-server](https://github.com/hrsh7th/vscode-langservers-extracted) by `npm i -g vscode-langservers-extracted` to get JSON lsp working
 7. Follow [nvim-treesitter quickstart](https://github.com/nvim-treesitter/nvim-treesitter#quickstart) to get treesitter installed, NOTE: this step requires a C compiler on your computer
 8. Install [ripgrep](https://github.com/BurntSushi/ripgrep) for searching
+9. Install [ack](https://beyondgrep.com/) for searching
 
 ### Key Mappings
 
@@ -33,6 +34,7 @@ Here are the most frequent used key mappings, for the full list please check the
 | \<leader\>sc | Search words in clang files with rg|
 | \<leader\>sp | Search words in python files with rg|
 | \<leader\>sg | Search words in golang files with rg|
+| \<leader\>sa* | Search words in all files with ack|
 | gd | Goto definition|
 | gD | Goto declaration|
 
@@ -81,6 +83,7 @@ Plugins are managed with [vim-plug](https://github.com/junegunn/vim-plug)
 * [simrat39/symbols-outline.nvim](https://github.com/simrat39/symbols-outline.nvim)
 * [tpope/vim-commentary](https://github.com/tpope/vim-commentary)
 * [tpope/vim-fugitive](https://github.com/tpope/vim-fugitive)
+* [tpope/vim-surround](https://github.com/tpope/vim-surround)
 * [vim-airline/vim-airline](https://github.com/vim-airline/vim-airline)
 * [vim-scripts/a.vim](https://github.com/vim-scripts/a.vim)
 

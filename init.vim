@@ -28,6 +28,7 @@ Plug 'joshdick/onedark.vim'
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' } " On-demand loading
 Plug 'vim-scripts/a.vim'
 Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-surround'
 Plug 'nsf/gocode', { 'tag': 'v.20150303', 'rtp': 'vim' }  " Plugin options
 Plug 'vim-airline/vim-airline'
 Plug 'junegunn/fzf', { 'do': './install --all' }  " Plugin outside ~/.vim/plugged with post-update hook
@@ -319,6 +320,7 @@ nnoremap <leader>% :call CopyCurrentFilePath()<CR>
   nnoremap <leader>sm :GrepperRg -tcmake <cword><cr>
   nnoremap <leader>sp :GrepperRg -tpy <cword><cr>
   nnoremap <leader>sg :GrepperRg -tgo <cword><cr>
+  nnoremap <leader>sa* :GrepperAck <cword><cr>
 " }}}
 
 
