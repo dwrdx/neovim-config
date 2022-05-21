@@ -78,6 +78,7 @@ set foldmethod=manual       " use manual folding
 set diffopt=filler,vertical " default behavior for diff
 set cc=120                  " set an 80 column border for good coding style
 set hidden
+let mapleader=","
 filetype on
 filetype plugin indent on   "allow auto-indenting depending on file type
 filetype plugin on
@@ -110,8 +111,8 @@ set ttyfast                 " Speed up scrolling in Vim
 " {{{ quickfix
   map <silent> <leader>qo :copen<CR>
   map <silent> <leader>qc :cclose<CR>
-  map <silent> <C-,>      :colder<CR>
-  map <silent> <C-.>      :cnewer<CR>
+  map <silent> <A-,>      :colder<CR>
+  map <silent> <A-.>      :cnewer<CR>
 " }}}
 
 " .h file is s source code
@@ -214,7 +215,7 @@ nnoremap <leader>% :call CopyCurrentFilePath()<CR>
   nnoremap <silent> <leader>b :Buffers<CR>
   nnoremap <silent> <leader>fw :Windows<CR>
   nnoremap <silent> <leader>fb :BLines<CR>
-  "nnoremap <silent> <leader>o :BTags<CR>
+  nnoremap <silent> <leader>fm :Marks<CR>
   "nnoremap <silent> <leader>O :Tags<CR>
   nnoremap <silent> <leader>fh :History<CR>
   nnoremap <silent> <leader>fa :Rg<CR>
@@ -316,10 +317,10 @@ nnoremap <leader>% :call CopyCurrentFilePath()<CR>
     \ ctermfg=243 ctermbg=NONE cterm=NONE guifg=#767676 guibg=NONE gui=NONE
 
   nnoremap <leader>s* :Grepper -tool rg -cword -noprompt<cr>
-  nnoremap <leader>sc :GrepperRg -tc <cword><cr>
-  nnoremap <leader>sm :GrepperRg -tcmake <cword><cr>
-  nnoremap <leader>sp :GrepperRg -tpy <cword><cr>
-  nnoremap <leader>sg :GrepperRg -tgo <cword><cr>
+  nnoremap <leader>sc :GrepperRg -tc "<cword>"<cr>
+  nnoremap <leader>sm :GrepperRg -tcmake "<cword>"<cr>
+  nnoremap <leader>sp :GrepperRg -tpy "<cword>"<cr>
+  nnoremap <leader>sg :GrepperRg -tgo "<cword>"<cr>
   nnoremap <leader>sa* :GrepperAck <cword><cr>
 " }}}
 
@@ -415,8 +416,8 @@ nnoremap <leader>% :call CopyCurrentFilePath()<CR>
   let bufferline.icons = 'buffer_number'
   let bufferline.closable = v:false
 
-  nnoremap <silent>    <A-,> :BufferPrevious<CR>
-  nnoremap <silent>    <A-.> :BufferNext<CR>
+  nnoremap <silent>    <A-h> :BufferPrevious<CR>
+  nnoremap <silent>    <A-l> :BufferNext<CR>
   nnoremap <silent>    <A-<> :BufferMovePrevious<CR>
   nnoremap <silent>    <A->> :BufferMoveNext<CR>
   nnoremap <silent>    <A-1> :BufferGoto 1<CR>
