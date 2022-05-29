@@ -42,6 +42,7 @@ Plug 'sbdchd/neoformat'
 Plug 'dwrdx/mywords.nvim' 
 
 Plug 'kyazdani42/nvim-web-devicons'
+Plug 'kyazdani42/nvim-tree.lua'
 Plug 'romgrk/barbar.nvim'
 Plug 'danymat/neogen'
 Plug 'mhinz/vim-startify'
@@ -134,18 +135,25 @@ nnoremap <leader>% :call CopyCurrentFilePath()<CR>
 " }}}
 
 
-" {{{ nerdtree
-  let g:NERDTreeMinimalUI = 1
-  let g:NERDTreeHijackNetrw = 0
-  let g:NERDTreeWinSize = 31
-  let g:NERDTreeChDirMode = 2
-  let g:NERDTreeAutoDeleteBuffer = 1
-  let g:NERDTreeShowBookmarks = 1
-  let g:NERDTreeCascadeOpenSingleChildDir = 1
-  let g:NERDTreeQuitOnOpen = 1
+" {{{ nerdtree - is replaced by nvim-tree.lua, will be removed later
+  " let g:NERDTreeMinimalUI = 1
+  " let g:NERDTreeHijackNetrw = 0
+  " let g:NERDTreeWinSize = 31
+  " let g:NERDTreeChDirMode = 2
+  " let g:NERDTreeAutoDeleteBuffer = 1
+  " let g:NERDTreeShowBookmarks = 1
+  " let g:NERDTreeCascadeOpenSingleChildDir = 1
+  " let g:NERDTreeQuitOnOpen = 1
 
-  nmap <F3> :NERDTreeToggle<CR>
-  nmap <a-m> :NERDTreeToggle<CR>
+  " nmap <F3> :NERDTreeToggle<CR>
+  " nmap <a-m> :NERDTreeToggle<CR>
+" }}}
+"
+" {{{ nvim-tree.lua
+  nnoremap <a-m> :NvimTreeToggle<CR>
+  " nnoremap <leader>r :NvimTreeRefresh<CR>
+  " nnoremap <leader>n :NvimTreeFindFile<CR>
+  " highlight NvimTreeFolderIcon guibg=blue
 " }}}
 
 " {{{ airline
@@ -494,3 +502,5 @@ nnoremap <leader>% :call CopyCurrentFilePath()<CR>
           \ { 'type': 'commands',  'header': ['   Commands']       },
           \ ]
 " }}}
+
+
