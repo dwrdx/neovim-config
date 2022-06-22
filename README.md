@@ -87,6 +87,7 @@ Plugins are managed with [vim-plug](https://github.com/junegunn/vim-plug)
 * [tpope/vim-surround](https://github.com/tpope/vim-surround)
 * [vim-airline/vim-airline](https://github.com/vim-airline/vim-airline)
 * [vim-scripts/a.vim](https://github.com/vim-scripts/a.vim)
+* [folke/tokyonight.nvim](https://github.com/folke/tokyonight.nvim)
 
 ### Beautiful Fonts
 

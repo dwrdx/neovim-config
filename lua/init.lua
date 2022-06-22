@@ -1,4 +1,3 @@
--- VIM API delcare
 local cmd = vim.cmd   -- to execute Vim commands e.g. cmd('pwd')
 local fn  = vim.fn    -- to call Vim functions e.g. fn.bufnr()
 local g   = vim.g     -- a table to access global variables
@@ -373,3 +372,16 @@ nvim_tree.setup {
     exclude = {},
   },
 }
+
+local function key_mapping_helper(mode, lhs, rhs, opts)
+    local options = { noremap = true }
+    if opts then
+        options = vim.tbl_extend("force", options, opts)
+    end
+    vim.api.nvim_set_keymap(mode, lhs, rhs, options)
+end
+
+key_mapping_helper("n", "<leader>m", ":lua require'mywords'.hl_toggle()<CR>", { silent = true })
+key_mapping_helper("n", "<leader>c", ":lua require'mywords'.uhl_all()<CR>",   { silent = true })
+
+g.tokyonight_style = "storm"

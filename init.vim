@@ -23,7 +23,6 @@ Plug 'hrsh7th/vim-vsnip' " For vsnip users.
 Plug 'simrat39/symbols-outline.nvim'
 Plug 'junegunn/vim-easy-align'
 Plug 'sheerun/vim-polyglot'
-Plug 'joshdick/onedark.vim'
 "Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' } " On-demand loading
 Plug 'vim-scripts/a.vim'
@@ -46,6 +45,9 @@ Plug 'kyazdani42/nvim-tree.lua'
 Plug 'romgrk/barbar.nvim'
 Plug 'danymat/neogen'
 Plug 'mhinz/vim-startify'
+
+Plug 'joshdick/onedark.vim'
+Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 
 " Plug '~/my-prototype-plugin' " Unmanaged plugin (manually installed and updated)
 call plug#end()
@@ -87,6 +89,7 @@ syntax on                   " syntax highlighting
 set clipboard=unnamedplus   " using system clipboard
 set completeopt=menu,menuone,noselect
 colorscheme onedark
+" colorscheme tokyonight
 set ttyfast                 " Speed up scrolling in Vim
 " set spell                 " enable spell check (may need to download language package)
 " set noswapfile            " disable creating swap file
