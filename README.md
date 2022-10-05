@@ -111,3 +111,4 @@ more patched nerd fonts can be found at [ryanoasis/nerd-fonts](https://github.co
 * javascript
 * markdown
 * python from [NexSabre/vscode-python-snippets](https://github.com/NexSabre/vscode-python-snippets)
+* rust from [friendly-snippets](https://github.com/rafamadriz/friendly-snippets)

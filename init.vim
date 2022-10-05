@@ -88,8 +88,8 @@ filetype plugin on
 syntax on                   " syntax highlighting
 set clipboard=unnamedplus   " using system clipboard
 set completeopt=menu,menuone,noselect
-colorscheme onedark
-" colorscheme tokyonight
+" colorscheme onedark
+colorscheme tokyonight
 set ttyfast                 " Speed up scrolling in Vim
 " set spell                 " enable spell check (may need to download language package)
 " set noswapfile            " disable creating swap file
