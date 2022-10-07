@@ -153,7 +153,19 @@ nnoremap <leader>% :call CopyCurrentFilePath()<CR>
 " }}}
 "
 " {{{ nvim-tree.lua
+  let g:NvimTreeZoomFlag = 0
+  function! s:nvimtree_zoom()
+    if g:NvimTreeZoomFlag == 0
+      execute 'NvimTreeResize +20'
+      let g:NvimTreeZoomFlag = 1
+    else
+      execute 'NvimTreeResize -20'
+      let g:NvimTreeZoomFlag = 0
+    endif
+  endfunction
+
   nnoremap <a-m> :NvimTreeToggle<CR>
+  nnoremap <a-r> :call <SID>nvimtree_zoom()<CR>
   " nnoremap <leader>r :NvimTreeRefresh<CR>
   " nnoremap <leader>n :NvimTreeFindFile<CR>
   " highlight NvimTreeFolderIcon guibg=blue
