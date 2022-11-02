@@ -12,12 +12,12 @@ local tree_sitter  = require('nvim-treesitter.configs')
 local nvim_tree    = require('nvim-tree')
 
 
-g.symbols_outline = {
+require("symbols-outline").setup {
     highlight_hovered_item = true,
     show_guides = true,
     auto_preview = false,
     position = 'right',
-    width = 35,
+    width = 20,
     show_numbers = false,
     show_relative_numbers = false,
     preview_bg_highlight = 'Pmenu',
@@ -385,3 +385,20 @@ key_mapping_helper("n", "<leader>m", ":lua require'mywords'.hl_toggle()<CR>", { 
 key_mapping_helper("n", "<leader>c", ":lua require'mywords'.uhl_all()<CR>",   { silent = true })
 
 g.tokyonight_style = "storm"
+
+local Terminal  = require('toggleterm.terminal').Terminal
+local lazygit = Terminal:new({ cmd = "lazygit", hidden = true, direction = "float" })
+
+function _lazygit_toggle()
+  lazygit:toggle()
+end
+
+vim.api.nvim_set_keymap("n", "<leader>g", "<cmd>lua _lazygit_toggle()<CR>", {noremap = true, silent = true})
+
+function _G.set_terminal_keymaps()
+  local opts = {buffer = 0}
+  vim.keymap.set('t', '<A-i>', [[<C-\><C-n>]], opts)
+end
+
+-- if you only want these mappings for toggle term use term://*toggleterm#* instead
+vim.cmd('autocmd! TermOpen term://* lua set_terminal_keymaps()')
