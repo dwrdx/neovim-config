@@ -250,12 +250,13 @@ toggleterm.setup {
         return vim.o.columns * 0.4
         end
     end,
-    direction = 'horizontal',
+    direction = 'float',
     hide_numbers = true, -- hide the number column in toggleterm buffers
     start_in_insert = false,
     insert_mappings = true, -- whether or not the open mapping applies in insert mode
     persist_size = true,
     close_on_exit = true, -- close the terminal window when the process exits
+    hidden = true, 
 }
 
 local opts = {
@@ -387,7 +388,7 @@ key_mapping_helper("n", "<leader>c", ":lua require'mywords'.uhl_all()<CR>",   { 
 g.tokyonight_style = "storm"
 
 local Terminal  = require('toggleterm.terminal').Terminal
-local lazygit = Terminal:new({ cmd = "lazygit", hidden = true, direction = "float" })
+local lazygit = Terminal:new({ cmd = "lazygit", hidden = true, direction = "float", count = 5 })
 
 function _lazygit_toggle()
   lazygit:toggle()

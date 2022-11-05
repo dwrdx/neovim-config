@@ -103,7 +103,7 @@ set ttyfast                 " Speed up scrolling in Vim
   " let &shellpipe = '2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode'
   " set shellquote= shellxquote=
 
-  map <leader>tm :ToggleTerm<CR>
+  map <leader>tm :1ToggleTerm<CR>
   tnoremap <expr> <C-R> '<C-\><C-N>"'.nr2char(getchar()).'pi'
   " Key to exit terminal command mode
   "tnoremap <C-[> <C-\><C-n>
