@@ -5,7 +5,7 @@ local opt = vim.opt   -- to set options
 
 -- Plugins delcare
 local nvim_lsp     = require('lspconfig')
-local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
 local cmp          = require('cmp')
 local toggleterm   = require('toggleterm')
 local tree_sitter  = require('nvim-treesitter.configs')
@@ -252,7 +252,7 @@ toggleterm.setup {
     end,
     direction = 'horizontal',
     hide_numbers = true, -- hide the number column in toggleterm buffers
-    start_in_insert = true,
+    start_in_insert = false,
     insert_mappings = true, -- whether or not the open mapping applies in insert mode
     persist_size = true,
     close_on_exit = true, -- close the terminal window when the process exits

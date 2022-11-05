@@ -122,12 +122,8 @@ set ttyfast                 " Speed up scrolling in Vim
 " .h file is s source code
 let g:c_syntax_for_h = 1
 
-" Copy current file path to clipboard
-function! CopyCurrentFilePath()
-  let @+ = expand('%')
-  echo @+
-endfunction
-nnoremap <leader>% :call CopyCurrentFilePath()<CR>
+source <sfile>:h/utils/helper.vim
+
 
 " ###############################################################################################
 " Plugin Settings - VIM Script
@@ -518,4 +514,8 @@ nnoremap <leader>% :call CopyCurrentFilePath()<CR>
           \ ]
 " }}}
 
+nnoremap <leader>% :call CopyCurrentFilePath()<CR>
 
+" {{{ window switching
+  nnoremap <silent> <leader>w <C-w>w<CR>
+" }}}
