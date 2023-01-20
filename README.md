@@ -13,6 +13,7 @@ Actively updated neovim configuration that is being used by myself
 7. Follow [nvim-treesitter quickstart](https://github.com/nvim-treesitter/nvim-treesitter#quickstart) to get treesitter installed, NOTE: this step requires a C compiler on your computer
 8. Install [ripgrep](https://github.com/BurntSushi/ripgrep) for searching
 9. Install [ack](https://beyondgrep.com/) for searching
+10. Install [goimports](https://pkg.go.dev/golang.org/x/tools/cmd/goimports) and [gopls](https://pkg.go.dev/golang.org/x/tools/gopls) for golang support
 
 ### Key Mappings
 

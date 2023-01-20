@@ -8,65 +8,53 @@ local nvim_lsp     = require('lspconfig')
 local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
 local cmp          = require('cmp')
 local toggleterm   = require('toggleterm')
-local tree_sitter  = require('nvim-treesitter.configs')
-local nvim_tree    = require('nvim-tree')
+
+require('plugins')
+
+-- try to configure dap
+local dap = require('dap')
+
+dap.adapters.go = function(callback, config)
+	local stdout = vim.loop.new_pipe(false)
+	local handle
+	local pid_or_err
+	local port = 38697
+	local opts = {
+		stdio = { nil, stdout },
+		args = { "dap", "-l", "127.0.0.1:" .. port },
+		detached = true,
+	}
+	handle, pid_or_err = vim.loop.spawn("dlv", opts, function(code)
+		stdout:close()
+		handle:close()
+		if code ~= 0 then
+			print("dlv exited with code", code)
+		end
+	end)
+	assert(handle, "Error running dlv: " .. tostring(pid_or_err))
+	stdout:read_start(function(err, chunk)
+		assert(not err, err)
+		if chunk then
+			vim.schedule(function()
+				require("dap.repl").append(chunk)
+			end)
+		end
+	end)
+	vim.defer_fn(function()
+		callback({ type = "server", host = "127.0.0.1", port = port })
+	end, 100)
+end
 
 
-require("symbols-outline").setup {
-    highlight_hovered_item = true,
-    show_guides = true,
-    auto_preview = false,
-    position = 'right',
-    width = 20,
-    show_numbers = false,
-    show_relative_numbers = false,
-    preview_bg_highlight = 'Pmenu',
-    keymaps = { -- These keymaps can be a string or a table for multiple keys
-        close = {"q"},
-        goto_location = "<Cr>",
-        focus_location = "o",
-        hover_symbol = "<C-space>",
-        toggle_preview = "K",
-        rename_symbol = "r",
-        code_actions = "a",
-    },
-    lsp_blacklist = {},
-    symbol_blacklist = {},
-}
-
-tree_sitter.setup {
-  ensure_installed = "all",
-  ignore_install = { "swift" },
-  highlight = {
-    enable = true,
-    custom_captures = {
-      -- Highlight the @foo.bar capture group with the "Identifier" highlight group.
-      ["foo.bar"] = "Identifier",
-    },
-    -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
-    -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
-    -- Using this option may slow down your editor, and you may see some duplicate highlights.
-    -- Instead of true it can also be a list of languages
-    additional_vim_regex_highlighting = false,
-  },
-  incremental_selection = {
-    enable = true,
-    keymaps = {
-      init_selection = "gnn",
-      node_incremental = "grn",
-      scope_incremental = "grc",
-      node_decremental = "grm",
-    },
-  },
-  indent = {
-    -- Disable auto indent of treesitter and using vim built-in
-    enable = false
+dap.configurations.go = {
+  {
+    type = 'go';
+    request = 'launch';
+    name = "Launch file";
+    program = "${file}";
   }
-} 
-
-
-
-
+}
+-- try to configure dap
 
 
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
@@ -310,69 +298,6 @@ function goimports(timeout_ms)
   end
 end
 
-nvim_tree.setup {
-  view = {
-    width = 30,
-    height = 30,
-    hide_root_folder = false,
-    side = "left",
-    preserve_window_proportions = false,
-    number = false,
-    relativenumber = false,
-    signcolumn = "yes",
-    mappings = {
-      custom_only = false,
-      list = {
-        { key = {"<CR>", "o", "<2-LeftMouse>"}, action = "edit" },
-        { key = "<C-e>",                        action = "edit_in_place" },
-        { key = {"O"},                          action = "edit_no_picker" },
-        { key = {"<2-RightMouse>", "<C-]>"},    action = "cd" },
-        { key = "<C-v>",                        action = "vsplit" },
-        { key = "<C-x>",                        action = "split" },
-        { key = "<C-t>",                        action = "tabnew" },
-        { key = "<",                            action = "prev_sibling" },
-        { key = ">",                            action = "next_sibling" },
-        { key = "P",                            action = "parent_node" },
-        { key = "<BS>",                         action = "close_node" },
-        { key = "<Tab>",                        action = "preview" },
-        { key = "K",                            action = "first_sibling" },
-        { key = "J",                            action = "last_sibling" },
-        { key = "I",                            action = "toggle_git_ignored" },
-        { key = "H",                            action = "toggle_dotfiles" },
-        { key = "r",                            action = "refresh" },
-        { key = "a",                            action = "create" },
-        { key = "d",                            action = "remove" },
-        { key = "D",                            action = "trash" },
-        { key = "R",                            action = "rename" },
-        { key = "<C-r>",                        action = "full_rename" },
-        { key = "x",                            action = "cut" },
-        { key = "c",                            action = "copy" },
-        { key = "p",                            action = "paste" },
-        { key = "y",                            action = "copy_name" },
-        { key = "Y",                            action = "copy_path" },
-        { key = "gy",                           action = "copy_absolute_path" },
-        { key = "[c",                           action = "prev_git_item" },
-        { key = "]c",                           action = "next_git_item" },
-        { key = "-",                            action = "dir_up" },
-        { key = "s",                            action = "system_open" },
-        { key = "f",                            action = "live_filter" },
-        { key = "F",                            action = "clear_live_filter" },
-        { key = "q",                            action = "close" },
-        { key = "g?",                           action = "toggle_help" },
-        { key = "W",                            action = "collapse_all" },
-        { key = "E",                            action = "expand_all" },
-        { key = "S",                            action = "search_node" },
-        { key = "<C-k>",                        action = "toggle_file_info" },
-        { key = ".",                            action = "run_file_command" }
-      },
-    },
-  },
-  filters = {
-    dotfiles = true,
-    custom = {},
-    exclude = {},
-  },
-}
 
 local function key_mapping_helper(mode, lhs, rhs, opts)
     local options = { noremap = true }

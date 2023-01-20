@@ -28,7 +28,7 @@ Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' } " On-demand loading
 Plug 'vim-scripts/a.vim'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
-Plug 'nsf/gocode', { 'tag': 'v.20150303', 'rtp': 'vim' }  " Plugin options
+Plug 'nsf/gocode', { 'rtp': 'vim' }  " Plugin options
 Plug 'vim-airline/vim-airline'
 Plug 'junegunn/fzf', { 'do': './install --all' }  " Plugin outside ~/.vim/plugged with post-update hook
 Plug 'junegunn/fzf.vim'
@@ -39,6 +39,9 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': 
 Plug 'rmagatti/auto-session'
 Plug 'sbdchd/neoformat'
 Plug 'dwrdx/mywords.nvim' 
+Plug 'mfussenegger/nvim-dap'
+Plug 'rcarriga/nvim-dap-ui'
+Plug 'ldelossa/nvim-dap-projects'
 
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'kyazdani42/nvim-tree.lua'
