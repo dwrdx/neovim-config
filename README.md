@@ -13,42 +13,7 @@ Actively updated neovim configuration that is being used by myself
 7. Follow [nvim-treesitter quickstart](https://github.com/nvim-treesitter/nvim-treesitter#quickstart) to get treesitter installed, NOTE: this step requires a C compiler on your computer
 8. Install [ripgrep](https://github.com/BurntSushi/ripgrep) for searching
 9. Install [ack](https://beyondgrep.com/) for searching
-10. Install [goimports](https://pkg.go.dev/golang.org/x/tools/cmd/goimports) and [gopls](https://pkg.go.dev/golang.org/x/tools/gopls) for golang support
-
-### Key Mappings
-
-Here are the most frequent used key mappings, for the full list please check the source code
-
-|Key Mapping|Function|
-|-----------|--------|
-| \<leader\>tm | Toggle terminal|
-| \<leader\>qo | Open quickfix|
-| \<leader\>qc | Close quickfix|
-| Alt-o        | Toggle symbols outline|
-| Alt-m        | Toggle NERDTree|
-| Alt-,        | Previous buffer|
-| Alt-.        | Next buffer|
-| \<leader\>ff | Use fzf to find files|
-| \<leader\>b  | Use fzf to find buffers|
-| \<leader\>b  | Use fzf to find buffers|
-| \<leader\>s* | Search words in all files with rg|
-| \<leader\>sc | Search words in clang files with rg|
-| \<leader\>sp | Search words in python files with rg|
-| \<leader\>sg | Search words in golang files with rg|
-| \<leader\>sa* | Search words in all files with ack|
-| gd | Goto definition|
-| gD | Goto declaration|
-
-### Screen Shots
-
-Start Dashboard
-![start](https://i.ibb.co/V3JL4zm/start.png)
-
-Find Files with fzf
-![fzf](https://i.ibb.co/XSBJrDX/fzf.png)
-
-Open Terminal
-![terminal](https://i.ibb.co/vkGRRL3/terminal.png)
+10. Install [goimports](https://pkg.go.dev/golang.org/x/tools/cmd/goimports), [gopls](https://pkg.go.dev/golang.org/x/tools/gopls) and [delve](https://github.com/go-delve/delve) for golang support
 
 
 ### Plugins
@@ -89,20 +54,13 @@ Plugins are managed with [vim-plug](https://github.com/junegunn/vim-plug)
 * [vim-airline/vim-airline](https://github.com/vim-airline/vim-airline)
 * [vim-scripts/a.vim](https://github.com/vim-scripts/a.vim)
 * [folke/tokyonight.nvim](https://github.com/folke/tokyonight.nvim)
+* [mfussenegger/nvim-dap](https://github.com/mfussenegger/nvim-dap)
+* [rcarriga/nvim-dap-ui](https://github.com/rcarriga/nvim-dap-ui)
 
 ### Beautiful Fonts
 
 This config is using `BitstreamVeraSansMono Nerd Font`
 more patched nerd fonts can be found at [ryanoasis/nerd-fonts](https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts)
-
-### Utilities
-
-* nvimps.ps1 - a small script to launch nvim TUI from powershell and change the title of powershell with 
-               working directory name
-* neovim.bat - a small script to launch nvim TUI from command prompt and change the title of cmd with 
-               working directory name
-* add_right_context_menu.reg - an example Windows Registry file to add `Edit with NeoVim` to right click context menu 
-                               on Windows, remember to change the path of neovim executable accordingly
 
 
 ### Snippets
@@ -113,3 +71,40 @@ more patched nerd fonts can be found at [ryanoasis/nerd-fonts](https://github.co
 * markdown
 * python from [NexSabre/vscode-python-snippets](https://github.com/NexSabre/vscode-python-snippets)
 * rust from [friendly-snippets](https://github.com/rafamadriz/friendly-snippets)
+
+### Key Mappings
+
+Here are the most frequent used key mappings, for the full list please check the source code
+
+|Key Mapping|Function|
+|-----------|--------|
+| \<leader\>tm | Toggle terminal|
+| \<leader\>qo | Open quickfix|
+| \<leader\>qc | Close quickfix|
+| Alt-o        | Toggle symbols outline|
+| Alt-m        | Toggle NERDTree|
+| Alt-,        | Previous buffer|
+| Alt-.        | Next buffer|
+| \<leader\>ff | Use fzf to find files|
+| \<leader\>b  | Use fzf to find buffers|
+| \<leader\>b  | Use fzf to find buffers|
+| \<leader\>s* | Search words in all files with rg|
+| \<leader\>sc | Search words in clang files with rg|
+| \<leader\>sp | Search words in python files with rg|
+| \<leader\>sg | Search words in golang files with rg|
+| \<leader\>sa* | Search words in all files with ack|
+| gd | Goto definition|
+| gD | Goto declaration|
+
+### Screen Shots
+
+Start Dashboard
+![start](https://i.ibb.co/V3JL4zm/start.png)
+
+Find Files with fzf
+![fzf](https://i.ibb.co/XSBJrDX/fzf.png)
+
+Open Terminal
+![terminal](https://i.ibb.co/vkGRRL3/terminal.png)
+
+

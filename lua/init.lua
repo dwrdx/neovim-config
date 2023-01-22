@@ -7,54 +7,10 @@ local opt = vim.opt   -- to set options
 local nvim_lsp     = require('lspconfig')
 local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
 local cmp          = require('cmp')
-local toggleterm   = require('toggleterm')
+
+opt.sessionoptions="blank,buffers,curdir,folds,help,options,tabpages,winsize,resize,winpos,terminal"
 
 require('plugins')
-
--- try to configure dap
-local dap = require('dap')
-
-dap.adapters.go = function(callback, config)
-	local stdout = vim.loop.new_pipe(false)
-	local handle
-	local pid_or_err
-	local port = 38697
-	local opts = {
-		stdio = { nil, stdout },
-		args = { "dap", "-l", "127.0.0.1:" .. port },
-		detached = true,
-	}
-	handle, pid_or_err = vim.loop.spawn("dlv", opts, function(code)
-		stdout:close()
-		handle:close()
-		if code ~= 0 then
-			print("dlv exited with code", code)
-		end
-	end)
-	assert(handle, "Error running dlv: " .. tostring(pid_or_err))
-	stdout:read_start(function(err, chunk)
-		assert(not err, err)
-		if chunk then
-			vim.schedule(function()
-				require("dap.repl").append(chunk)
-			end)
-		end
-	end)
-	vim.defer_fn(function()
-		callback({ type = "server", host = "127.0.0.1", port = port })
-	end, 100)
-end
-
-
-dap.configurations.go = {
-  {
-    type = 'go';
-    request = 'launch';
-    name = "Launch file";
-    program = "${file}";
-  }
-}
--- try to configure dap
 
 
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
@@ -230,42 +186,6 @@ cmp.setup.cmdline(':', {
     })
 })
 
-toggleterm.setup {
-    size = function(term)
-        if term.direction == "horizontal" then
-        return 15
-        elseif term.direction == "vertical" then
-        return vim.o.columns * 0.4
-        end
-    end,
-    direction = 'float',
-    hide_numbers = true, -- hide the number column in toggleterm buffers
-    start_in_insert = false,
-    insert_mappings = true, -- whether or not the open mapping applies in insert mode
-    persist_size = true,
-    close_on_exit = true, -- close the terminal window when the process exits
-    hidden = true, 
-}
-
-local opts = {
-  log_level = 'info',
-  auto_session_enable_last_session = false,
-  auto_session_root_dir = vim.fn.stdpath('data').."/sessions/",
-  auto_session_enabled = true,
-  auto_save_enabled = false,
-  auto_restore_enabled = false,
-  auto_session_suppress_dirs = nil
-}
-
-require('auto-session').setup(opts)
-
-require('neogen').setup {
-        enabled = true,             --if you want to disable Neogen
-        input_after_comment = true, -- (default: true) automatic jump (with insert mode) on inserted annotation
-        -- jump_map = "<C-e>"       -- (DROPPED SUPPORT, see [here](#cycle-between-annotations) !) The keymap in order to jump in the annotation fields (in insert mode)
-    }
-
-opt.sessionoptions="blank,buffers,curdir,folds,help,options,tabpages,winsize,resize,winpos,terminal"
 
 
 function goimports(timeout_ms)
@@ -312,19 +232,3 @@ key_mapping_helper("n", "<leader>c", ":lua require'mywords'.uhl_all()<CR>",   { 
 
 g.tokyonight_style = "storm"
 
-local Terminal  = require('toggleterm.terminal').Terminal
-local lazygit = Terminal:new({ cmd = "lazygit", hidden = true, direction = "float", count = 5 })
-
-function _lazygit_toggle()
-  lazygit:toggle()
-end
-
-vim.api.nvim_set_keymap("n", "<leader>g", "<cmd>lua _lazygit_toggle()<CR>", {noremap = true, silent = true})
-
-function _G.set_terminal_keymaps()
-  local opts = {buffer = 0}
-  vim.keymap.set('t', '<A-i>', [[<C-\><C-n>]], opts)
-end
-
--- if you only want these mappings for toggle term use term://*toggleterm#* instead
-vim.cmd('autocmd! TermOpen term://* lua set_terminal_keymaps()')
