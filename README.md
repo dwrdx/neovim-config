@@ -14,6 +14,13 @@ Actively updated neovim configuration that is being used by myself
 1. Install pyright by `npm i -g pyright` to get python lsp working
 2. Create virtualenv with `virtualenv -v venv`
 3. Activate virtualenv and install [debugpy](https://github.com/microsoft/debugpy) for debugging
+4. Create `pyrightconfig.json` file in your project and configure pyright as following, refer to [pyrightconfig](https://github.com/Microsoft/pyright/blob/main/docs/configuration.md) for details
+```json
+{
+    "venvPath": ".",
+    "venv": "venv"
+}
+```
 
 #### Coding with Golang
 1. Install [goimports](https://pkg.go.dev/golang.org/x/tools/cmd/goimports) and [gopls](https://pkg.go.dev/golang.org/x/tools/gopls) for golang lsp support

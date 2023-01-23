@@ -79,7 +79,7 @@ nvim_lsp['jsonls'].setup { }
 
 nvim_lsp['cmake'].setup { }
 nvim_lsp['gopls'].setup { 
-	cmd = {'gopls', 'serve'},
+	cmd = {'gopls'},
 	-- for postfix snippets and analyzers
 	capabilities = capabilities,
     settings = {
