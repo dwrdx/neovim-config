@@ -19,16 +19,22 @@ toggleterm.setup {
 
 local Terminal  = require('toggleterm.terminal').Terminal
 local lazygit = Terminal:new({ cmd = "lazygit", hidden = true, direction = "float", count = 5 })
+local console = Terminal:new({ hidden = true, direction = "vertical", count = 6 })
 
 function _lazygit_toggle()
   lazygit:toggle()
 end
 
+function _console_toggle()
+  console:toggle()
+end
+
 vim.api.nvim_set_keymap("n", "<leader>g", "<cmd>lua _lazygit_toggle()<CR>", {noremap = true, silent = true})
+vim.api.nvim_set_keymap("n", "<F2>", "<cmd>lua _console_toggle()<CR>", {noremap = true, silent = true})
 
 function _G.set_terminal_keymaps()
   local opts = {buffer = 0}
-  vim.keymap.set('t', '<A-i>', [[<C-\><C-n>]], opts)
+  vim.keymap.set('t', '<A-y>', [[<C-\><C-n>]], opts)
 end
 
 -- if you only want these mappings for toggle term use term://*toggleterm#* instead
