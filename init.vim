@@ -53,6 +53,7 @@ Plug 'mhinz/vim-startify'
 
 Plug 'joshdick/onedark.vim'
 Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
+Plug 'christoomey/vim-tmux-navigator'
 
 " Plug '~/my-prototype-plugin' " Unmanaged plugin (manually installed and updated)
 call plug#end()
