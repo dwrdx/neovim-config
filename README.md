@@ -76,6 +76,7 @@ Plugins are managed with [vim-plug](https://github.com/junegunn/vim-plug)
 * [folke/tokyonight.nvim](https://github.com/folke/tokyonight.nvim)
 * [mfussenegger/nvim-dap](https://github.com/mfussenegger/nvim-dap)
 * [rcarriga/nvim-dap-ui](https://github.com/rcarriga/nvim-dap-ui)
+* [LunarWatcher/auto-pairs](https://github.com/LunarWatcher/auto-pairs)
 
 ### Beautiful Fonts
 
@@ -85,7 +86,7 @@ more patched nerd fonts can be found at [ryanoasis/nerd-fonts](https://github.co
 
 ### Snippets
 
-* clang
+* c/c++
 * golang
 * javascript
 * markdown

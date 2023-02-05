@@ -11,7 +11,8 @@
 call plug#begin('~/.nvim/plugged')
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'mhinz/vim-grepper'
-Plug 'jiangmiao/auto-pairs'
+" Plug 'jiangmiao/auto-pairs'
+Plug 'LunarWatcher/auto-pairs'
 Plug 'neovim/nvim-lspconfig'
 Plug 'hrsh7th/nvim-cmp'
 Plug 'hrsh7th/cmp-nvim-lsp'
