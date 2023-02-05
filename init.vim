@@ -495,6 +495,7 @@ source <sfile>:h/utils/helper.vim
   endfunction
   
   let g:startify_session_dir = '~/.nvim_sessions'
+  let g:startify_change_to_dir = 0
 
   let g:startify_commands = [
       \ {'c': 'echo stdpath("config")'},
