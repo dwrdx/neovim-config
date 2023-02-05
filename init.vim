@@ -37,12 +37,13 @@ Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 Plug 'akinsho/toggleterm.nvim'
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
-Plug 'rmagatti/auto-session'
+" Plug 'rmagatti/auto-session'
 Plug 'sbdchd/neoformat'
 Plug 'dwrdx/mywords.nvim' 
 Plug 'mfussenegger/nvim-dap'
 Plug 'rcarriga/nvim-dap-ui'
 Plug 'ldelossa/nvim-dap-projects'
+Plug 'kevinhwang91/nvim-bqf'
 
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'kyazdani42/nvim-tree.lua'
@@ -493,7 +494,7 @@ source <sfile>:h/utils/helper.vim
       return map(files, "{'line': v:val, 'path': v:val}")
   endfunction
   
-  let g:startify_session_dir = '~/.vim/session'
+  let g:startify_session_dir = '~/.nvim_sessions'
 
   let g:startify_commands = [
       \ {'c': 'echo stdpath("config")'},
