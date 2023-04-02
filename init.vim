@@ -55,6 +55,8 @@ Plug 'joshdick/onedark.vim'
 Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 Plug 'christoomey/vim-tmux-navigator'
 
+Plug 'github/copilot.vim'
+
 " Plug '~/my-prototype-plugin' " Unmanaged plugin (manually installed and updated)
 call plug#end()
 
@@ -437,9 +439,45 @@ source <sfile>:h/utils/helper.vim
 " }}}
 
 " {{{ barbar
-  let bufferline = get(g:, 'bufferline', {})
-  let bufferline.icons = 'buffer_number'
-  let bufferline.closable = v:false
+lua << EOF
+require'barbar'.setup {
+  animation = true,
+  auto_hide = false,
+  tabpages = true,
+  clickable = false,
+  icons = {
+    buffer_index = false,
+    buffer_number = false,
+    button = '',
+    -- Enables / disables diagnostic symbols
+    diagnostics = {
+      [vim.diagnostic.severity.ERROR] = {enabled = false, icon = 'ﬀ'},
+      [vim.diagnostic.severity.WARN] = {enabled = false},
+      [vim.diagnostic.severity.INFO] = {enabled = false},
+      [vim.diagnostic.severity.HINT] = {enabled = false},
+    },
+    filetype = {
+      custom_colors = false,
+      enabled = false,
+    },
+    separator = {left = '▎', right = ''},
+    modified = {button = '●'},
+    pinned = {button = '車'},
+    alternate = {filetype = {enabled = false}},
+    current = {buffer_index = true},
+    inactive = {button = '×'},
+    visible = {modified = {buffer_number = false}},
+  },
+  insert_at_end = false,
+  insert_at_start = false,
+  maximum_padding = 1,
+  minimum_padding = 1,
+  maximum_length = 30,
+  semantic_letters = true,
+  letters = 'asdfjkl;ghnmxcvbziowerutyqpASDFJKLGHNMXCVBZIOWERUTYQP',
+  no_name_title = nil,
+}
+EOF
 
   nnoremap <silent>    <A-h> :BufferPrevious<CR>
   nnoremap <silent>    <A-l> :BufferNext<CR>
