@@ -81,7 +81,7 @@ Plugins are managed with [vim-plug](https://github.com/junegunn/vim-plug)
 ### Beautiful Fonts
 
 This config is using `BitstreamVeraSansMono Nerd Font`
-more patched nerd fonts can be found at [ryanoasis/nerd-fonts](https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts)
+Install [nerdfonts](https://www.nerdfonts.com/)
 
 
 ### Snippets
