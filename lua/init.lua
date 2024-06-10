@@ -228,6 +228,7 @@ local function key_mapping_helper(mode, lhs, rhs, opts)
 end
 
 key_mapping_helper("n", "<leader>m", ":lua require'mywords'.hl_toggle()<CR>", { silent = true })
+key_mapping_helper("n", "<leader>r", ":lua require'mywords'.hl_toggle_regex()<CR>", { silent = true })
 key_mapping_helper("n", "<leader>c", ":lua require'mywords'.uhl_all()<CR>",   { silent = true })
 
 g.tokyonight_style = "storm"
