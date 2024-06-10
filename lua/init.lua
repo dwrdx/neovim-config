@@ -186,36 +186,8 @@ cmp.setup.cmdline(':', {
     })
 })
 
-
-
 function goimports(timeout_ms)
-  local context = { only = { "source.organizeImports" } }
-  vim.validate { context = { context, "t", true } }
-
-  local params = vim.lsp.util.make_range_params()
-  params.context = context
-
-  -- See the implementation of the textDocument/codeAction callback
-  -- (lua/vim/lsp/handler.lua) for how to do this properly.
-  local result = vim.lsp.buf_request_sync(0, "textDocument/codeAction", params, timeout_ms)
-  if not result or next(result) == nil then return end
-  local actions = result[1].result
-  if not actions then return end
-  local action = actions[1]
-
-  -- textDocument/codeAction can return either Command[] or CodeAction[]. If it
-  -- is a CodeAction, it can have either an edit, a command or both. Edits
-  -- should be executed first.
-  if action.edit or type(action.command) == "table" then
-    if action.edit then
-      vim.lsp.util.apply_workspace_edit(action.edit)
-    end
-    if type(action.command) == "table" then
-      vim.lsp.buf.execute_command(action.command)
-    end
-  else
-    vim.lsp.buf.execute_command(action)
-  end
+  vim.lsp.buf.code_action({ context = { only = { 'source.organizeImports' } }, apply = true })
 end
 
 
@@ -232,4 +204,49 @@ key_mapping_helper("n", "<leader>r", ":lua require'mywords'.hl_toggle_regex()<CR
 key_mapping_helper("n", "<leader>c", ":lua require'mywords'.uhl_all()<CR>",   { silent = true })
 
 g.tokyonight_style = "storm"
+
+
+require'nvim-web-devicons'.setup {
+ -- your personnal icons can go here (to override)
+ -- you can specify color or cterm_color instead of specifying both of them
+ -- DevIcon will be appended to `name`
+ override = {
+  zsh = {
+    icon = "",
+    color = "#428850",
+    cterm_color = "65",
+    name = "Zsh"
+  }
+ };
+ -- globally enable different highlight colors per icon (default to true)
+ -- if set to false all icons will have the default icon's color
+ color_icons = true;
+ -- globally enable default icons (default to false)
+ -- will get overriden by `get_icons` option
+ default = true;
+ -- globally enable "strict" selection of icons - icon will be looked up in
+ -- different tables, first by filename, and if not found by extension; this
+ -- prevents cases when file doesn't have any extension but still gets some icon
+ -- because its name happened to match some extension (default to false)
+ strict = true;
+ -- same as `override` but specifically for overrides by filename
+ -- takes effect when `strict` is true
+ override_by_filename = {
+  [".gitignore"] = {
+    icon = "",
+    color = "#f1502f",
+    name = "Gitignore"
+  }
+ };
+ -- same as `override` but specifically for overrides by extension
+ -- takes effect when `strict` is true
+ override_by_extension = {
+  ["log"] = {
+    icon = "",
+    color = "#81e043",
+    name = "Log"
+  }
+ };
+}
+
 
