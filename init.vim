@@ -42,6 +42,7 @@ Plug 'sbdchd/neoformat'
 Plug 'dwrdx/mywords.nvim' 
 Plug 'mfussenegger/nvim-dap'
 Plug 'rcarriga/nvim-dap-ui'
+Plug 'nvim-neotest/nvim-nio'
 Plug 'ldelossa/nvim-dap-projects'
 Plug 'kevinhwang91/nvim-bqf'
 
@@ -56,6 +57,7 @@ Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 Plug 'christoomey/vim-tmux-navigator'
 
 Plug 'github/copilot.vim'
+Plug 'Exafunction/codeium.vim'
 
 " Plug '~/my-prototype-plugin' " Unmanaged plugin (manually installed and updated)
 call plug#end()
