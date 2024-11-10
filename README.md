@@ -22,6 +22,9 @@ Actively updated neovim configuration that is being used by myself
 }
 ```
 
+#### Coding with rust
+1. Install [rust-analyzer](https://github.com/rust-analyzer/rust-analyzer) by `rustup component add rust-analyzer` to get rust lsp working
+
 #### Coding with Golang
 1. Install [goimports](https://pkg.go.dev/golang.org/x/tools/cmd/goimports) and [gopls](https://pkg.go.dev/golang.org/x/tools/gopls) for golang lsp support
 2. Install [delve](https://github.com/go-delve/delve) for debugging
@@ -60,6 +63,7 @@ Plugins are managed with [vim-plug](https://github.com/junegunn/vim-plug)
 * [mhinz/vim-grepper](https://github.com/mhinz/vim-grepper)
 * [mhinz/vim-startify](https://github.com/mhinz/vim-startify)
 * [neovim/nvim-lspconfig](https://github.com/neovim/nvim-lspconfig)
+* [mrcjkb/rustaceanvim](https://github.com/mrcjkb/rustaceanvim)
 * [nsf/gocode](https://github.com/nsf/gocode)
 * [nvim-treesitter/nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter)
 * [rmagatti/auto-session](https://github.com/rmagatti/auto-session)

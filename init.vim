@@ -30,6 +30,7 @@ Plug 'vim-scripts/a.vim'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
 Plug 'nsf/gocode', { 'rtp': 'vim' }  " Plugin options
+Plug 'mrcjkb/rustaceanvim'   " for rust
 Plug 'vim-airline/vim-airline'
 Plug 'junegunn/fzf', { 'do': './install --all' }  " Plugin outside ~/.vim/plugged with post-update hook
 Plug 'junegunn/fzf.vim'
