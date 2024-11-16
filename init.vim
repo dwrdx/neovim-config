@@ -348,6 +348,7 @@ source <sfile>:h/utils/helper.vim
 
   nnoremap <leader>s* :Grepper -tool rg -cword -noprompt<cr>
   nnoremap <leader>sc :GrepperRg -tc "<cword>"<cr>
+  nnoremap <leader>sr :GrepperRg -trust "<cword>"<cr>
   nnoremap <leader>sm :GrepperRg -tcmake "<cword>"<cr>
   nnoremap <leader>sp :GrepperRg -tpy "<cword>"<cr>
   nnoremap <leader>sg :GrepperRg -tgo "<cword>"<cr>
