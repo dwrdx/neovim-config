@@ -30,7 +30,7 @@ Plug 'vim-scripts/a.vim'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
 Plug 'nsf/gocode', { 'rtp': 'vim' }  " Plugin options
-Plug 'mrcjkb/rustaceanvim'   " for rust
+" Plug 'mrcjkb/rustaceanvim'   " using lsp instead of this plugin for rust
 Plug 'vim-airline/vim-airline'
 Plug 'junegunn/fzf', { 'do': './install --all' }  " Plugin outside ~/.vim/plugged with post-update hook
 Plug 'junegunn/fzf.vim'
@@ -271,7 +271,7 @@ source <sfile>:h/utils/helper.vim
 
   command! -nargs=* -bang Rg call RipgrepFzf(<q-args>, <bang>0)
 
-  let $FZF_DEFAULT_COMMAND="rg --files --no-ignore-vcs"
+  let $FZF_DEFAULT_COMMAND="rg --files"  " --no-ignore-vcs"
   let $FZF_DEFAULT_OPTS = '--bind ctrl-a:select-all,alt-n:next-history,alt-p:previous-history,ctrl-n:down,ctrl-p:up'
 
 
