@@ -8,6 +8,9 @@ local nvim_lsp     = require('lspconfig')
 local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
 local cmp          = require('cmp')
 
+require("mason").setup()
+require("ibl").setup()
+
 opt.sessionoptions="blank,buffers,curdir,folds,help,options,tabpages,winsize,resize,winpos,terminal"
 
 require('plugins')

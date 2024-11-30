@@ -13,6 +13,7 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'mhinz/vim-grepper'
 " Plug 'jiangmiao/auto-pairs'
 Plug 'LunarWatcher/auto-pairs'
+" Plug 'windwp/nvim-autopairs'
 Plug 'neovim/nvim-lspconfig'
 Plug 'hrsh7th/nvim-cmp'
 Plug 'hrsh7th/cmp-nvim-lsp'
@@ -21,7 +22,8 @@ Plug 'hrsh7th/cmp-path'
 Plug 'hrsh7th/cmp-cmdline'
 Plug 'hrsh7th/cmp-vsnip' " For vsnip users.
 Plug 'hrsh7th/vim-vsnip' " For vsnip users.
-Plug 'simrat39/symbols-outline.nvim'
+" Plug 'simrat39/symbols-outline.nvim'
+Plug 'hedyhli/outline.nvim'
 Plug 'junegunn/vim-easy-align'
 Plug 'sheerun/vim-polyglot'
 "Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
@@ -46,6 +48,9 @@ Plug 'rcarriga/nvim-dap-ui'
 Plug 'nvim-neotest/nvim-nio'
 Plug 'ldelossa/nvim-dap-projects'
 Plug 'kevinhwang91/nvim-bqf'
+Plug 'folke/which-key.nvim'
+Plug 'williamboman/mason.nvim'
+Plug 'lukas-reineke/indent-blankline.nvim'
 
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'kyazdani42/nvim-tree.lua'
@@ -140,8 +145,8 @@ source <sfile>:h/utils/helper.vim
 " Plugin Settings - VIM Script
 " ###############################################################################################
 " {{{ symbols-outline
-  nmap <F4> :SymbolsOutline<CR>
-  nmap <a-o> :SymbolsOutline<CR>
+  nmap <F4> :Outline<CR>
+  nmap <a-o> :Outline<CR>
 " }}}
 
 
@@ -215,8 +220,8 @@ source <sfile>:h/utils/helper.vim
   " let g:fzf_layout = { 'window': '10new' }
 
   " - Preview windows (disable)
-  let g:fzf_preview_window = []
-  "let g:fzf_preview_window = ['right:50%', 'ctrl-/']
+  " let g:fzf_preview_window = []
+  let g:fzf_preview_window = ['right:50%', 'ctrl-/']
   
   " Customize fzf colors to match your color scheme
   " - fzf#wrap translates this to a set of `--color` options
@@ -424,7 +429,7 @@ source <sfile>:h/utils/helper.vim
 
   augroup autofold
     autocmd!
-    autocmd BufRead *.* call ToggleFold()
+    autocmd BufRead *.* call ToggleFold() | Outline
   augroup END
 
   " use sbdchd/neoformat to format code on saving
@@ -432,6 +437,7 @@ source <sfile>:h/utils/helper.vim
     autocmd!
     autocmd BufWritePre *.py undojoin | Neoformat
     autocmd BufWritePre *.go undojoin | Neoformat
+    autocmd BufWritePre *.rs undojoin | Neoformat
 
     " uncomment below sections for auto formating clang using clang-format
     " autocmd BufWritePre *.c undojoin | Neoformat
@@ -563,7 +569,6 @@ nnoremap <leader>% :call CopyCurrentFilePath()<CR>
 
 let g:AutoPairsPrefix = "<C-i>"
 
-
 " {{{ DAP debugging
     nnoremap <silent> <F5> <Cmd>lua require'dap'.continue()<CR>
     nnoremap <silent> <F10> <Cmd>lua require'dap'.step_over()<CR>
@@ -575,3 +580,4 @@ let g:AutoPairsPrefix = "<C-i>"
     nnoremap <silent> <Leader>dr <Cmd>lua require'dap'.repl.open()<CR>
     nnoremap <silent> <Leader>dl <Cmd>lua require'dap'.run_last()<CR>
 " }}}
+
