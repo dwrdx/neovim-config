@@ -561,6 +561,9 @@ nnoremap <leader>% :call CopyCurrentFilePath()<CR>
 " }}}
 
 
+let g:AutoPairsPrefix = "<C-i>"
+
+
 " {{{ DAP debugging
     nnoremap <silent> <F5> <Cmd>lua require'dap'.continue()<CR>
     nnoremap <silent> <F10> <Cmd>lua require'dap'.step_over()<CR>
