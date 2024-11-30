@@ -275,3 +275,4 @@ require'nvim-web-devicons'.setup {
 }
 
 
+require('mini.surround').setup()

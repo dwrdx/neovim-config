@@ -10,6 +10,7 @@
 " ###############################################################################################
 call plug#begin('~/.nvim/plugged')
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'echasnovski/mini.nvim', { 'branch': 'stable' }
 Plug 'mhinz/vim-grepper'
 " Plug 'jiangmiao/auto-pairs'
 Plug 'LunarWatcher/auto-pairs'
