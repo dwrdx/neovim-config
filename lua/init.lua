@@ -4,7 +4,6 @@ local g   = vim.g     -- a table to access global variables
 local opt = vim.opt   -- to set options
 
 -- Plugins delcare
-local nvim_lsp     = require('lspconfig')
 local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
 local cmp          = require('cmp')
 
@@ -57,15 +56,16 @@ end
 
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
-nvim_lsp['clangd'].setup {
+vim.lsp.config.clangd = {
     on_attach = on_attach,
     capabilities = capabilities,
     flags = {
         debounce_text_changes = 150,
     }
 }
+vim.lsp.enable 'clangd'
 
-nvim_lsp['pyright'].setup {
+vim.lsp.config.pyright = {
     on_attach = on_attach,
     capabilities = capabilities,
     settings = {
@@ -77,11 +77,17 @@ nvim_lsp['pyright'].setup {
         debounce_text_changes = 150,
     }
 }
+vim.lsp.enable 'pyright'
 
-nvim_lsp['jsonls'].setup { }
+vim.lsp.config.jsonls = {
+    cmd = { 'vscode-json-languageserver', '--stdio' },
+}
+vim.lsp.enable 'jsonls'
 
-nvim_lsp['cmake'].setup { }
-nvim_lsp['gopls'].setup { 
+vim.lsp.config.cmake = {}
+vim.lsp.enable 'cmake'
+
+vim.lsp.config.gopls = {
 	cmd = {'gopls'},
 	-- for postfix snippets and analyzers
 	capabilities = capabilities,
@@ -97,8 +103,9 @@ nvim_lsp['gopls'].setup {
     },
 	on_attach = on_attach,
 }
+vim.lsp.enable 'gopls'
 
-nvim_lsp['rust_analyzer'].setup{
+vim.lsp.config.rust_analyzer = {
     on_attach = on_attach,
     settings = {
         ["rust-analyzer"] = {

@@ -9,7 +9,7 @@
 "   Multiple Plug commands can be written in a single line using | separators
 " ###############################################################################################
 call plug#begin('~/.nvim/plugged')
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+" Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'echasnovski/mini.nvim', { 'branch': 'stable' }
 Plug 'mhinz/vim-grepper'
 " Plug 'jiangmiao/auto-pairs'
@@ -63,8 +63,8 @@ Plug 'joshdick/onedark.vim'
 Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 Plug 'christoomey/vim-tmux-navigator'
 
-Plug 'github/copilot.vim'
-Plug 'Exafunction/codeium.vim'
+" Plug 'github/copilot.vim'
+" Plug 'Exafunction/codeium.vim'
 
 " Plug '~/my-prototype-plugin' " Unmanaged plugin (manually installed and updated)
 call plug#end()
@@ -108,6 +108,8 @@ set completeopt=menu,menuone,noselect
 " colorscheme onedark
 colorscheme tokyonight
 set ttyfast                 " Speed up scrolling in Vim
+set guifont=.SF\ NS\ Mono:h16   " 4K display larger font (for GUI Neovim)
+set linespace=4                 " extra vertical spacing for readability
 " set spell                 " enable spell check (may need to download language package)
 " set noswapfile            " disable creating swap file
 " set backupdir=~/.cache/vim " Directory to store backup files.
@@ -395,7 +397,7 @@ source <sfile>:h/utils/helper.vim
 " {{{ treesitter + fold
   set foldlevel=2
   set foldmethod=expr
-  set foldexpr=nvim_treesitter#foldexpr()
+  " set foldexpr=nvim_treesitter#foldexpr()
 
   function! ToggleFold()
     if &filetype ==# 'json'
@@ -430,7 +432,7 @@ source <sfile>:h/utils/helper.vim
 
   augroup autofold
     autocmd!
-    autocmd BufRead *.* call ToggleFold() | Outline
+    " autocmd BufRead *.* call ToggleFold() | Outline
   augroup END
 
   " use sbdchd/neoformat to format code on saving
