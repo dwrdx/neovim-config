@@ -2,6 +2,14 @@
 
 Actively updated neovim configuration that is being used by myself
 
+### Requirements
+
+| Software | Version | Notes |
+|----------|---------|-------|
+| Neovim | >= 0.11 (tested on 0.12) | LSP config uses the `vim.lsp.config` / `vim.lsp.enable` API |
+| vim-plug | latest | Plugin manager |
+| C compiler | - | Required for treesitter / plugin compilation |
+
 ### How to use
 
 1. Find the nvim config locaton on your computer by running `:echo stdpath('config')` in neovim
@@ -36,7 +44,7 @@ Actively updated neovim configuration that is being used by myself
 
 
 #### Misc
-1. JSON: Install [vscode-json-language-server](https://github.com/hrsh7th/vscode-langservers-extracted) by `npm i -g vscode-langservers-extracted` to get JSON lsp working
+1. JSON: Install [vscode-json-languageserver](https://www.npmjs.com/package/vscode-json-languageserver) by `npm i -g vscode-json-languageserver` to get JSON lsp working
 
 
 ### Plugins

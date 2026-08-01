@@ -15,12 +15,10 @@ opt.sessionoptions="blank,buffers,curdir,folds,help,options,tabpages,winsize,res
 require('plugins')
 
 
-vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-    vim.lsp.diagnostic.on_publish_diagnostics, {
-        virtual_text = false,
-        underline = false
-    }
-)
+vim.diagnostic.config({
+    virtual_text = false,
+    underline = false,
+})
 
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
