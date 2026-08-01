@@ -432,7 +432,7 @@ source <sfile>:h/utils/helper.vim
 
   augroup autofold
     autocmd!
-    " autocmd BufRead *.* call ToggleFold() | Outline
+    autocmd BufRead *.* call ToggleFold() | Outline
   augroup END
 
   " use sbdchd/neoformat to format code on saving

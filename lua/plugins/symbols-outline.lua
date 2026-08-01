@@ -1,5 +1,8 @@
 
 require("outline").setup({
+  outline_window = {
+    focus_on_open = false,
+  },
   symbol_folding = {
     -- Depth past which nodes will be folded by default. Set to false to unfold all on open.
     autofold_depth = 1,
